@@ -3,14 +3,9 @@ import { useEffect, useState } from "react";
 
 export default function Header() {
   const [headerOn, setHeaderOn] = useState<boolean>(false);
-<<<<<<< HEAD
   const [scrollOn, setScrollOn] = useState<boolean>(false);
-=======
-  const [scrollOn,setScrollOn] = useState<boolean>(false);
->>>>>>> 913d0a9995007b294700c0bd7e40be41c2d343c8
   const [menuList, setMenuList] = useState<HTMLElement[]>();
   const [detailMenu, setDetailMenu] = useState<HTMLElement[]>();
-
 
   const headerEnter = (): void => {
     setHeaderOn(true);
@@ -20,7 +15,6 @@ export default function Header() {
   };
 
   useEffect(() => {
-<<<<<<< HEAD
     let winScroll: number = window.scrollY;
     const myPage: HTMLElement | null = document.querySelector(".mypage");
     const mySub: HTMLElement | null = document.querySelector(".sub_mypage");
@@ -67,41 +61,10 @@ export default function Header() {
             const detailNum = idx - 2;
             detailMenu[detailNum].classList.add("on");
           }
-=======
-    
-    let winScroll:number = window.scrollY;
-
-    window.addEventListener("scroll",()=>{
-
-      winScroll = window.scrollY;
-      if(winScroll>70){
-        setScrollOn(true);
-        setHeaderOn(true);
-      }else{
-        setScrollOn(false);
-        setHeaderOn(false);
-      }
-    })
-
-    const menuItems = document.querySelectorAll<HTMLLIElement>(".top_menu>li");
-    setMenuList(Array.from(menuItems));
-  }, []);
-
-  if (menuList !== undefined) {
-    menuList.forEach((item, idx) => {
-      let itemUl = item.parentElement;
-      let headerBackground:any = document.querySelector(".header_back");
-      item.addEventListener("mouseenter", () => {
-        if (itemUl !== null) {
-          itemUl.classList.add("on");
-          headerBackground.classList.add("on");
-          menuList[idx].classList.add("mouse_enter");
->>>>>>> 913d0a9995007b294700c0bd7e40be41c2d343c8
         }
       });
 
       item.addEventListener("mouseleave", () => {
-<<<<<<< HEAD
         if (itemUl !== null && headerBackground !== null) {
           itemUl.classList.remove("on");
           headerBackground.classList.remove("on");
@@ -111,12 +74,6 @@ export default function Header() {
             const detailNum = idx - 2;
             detailMenu[detailNum].classList.remove("on");
           }
-=======
-        if (itemUl !== null) {
-          itemUl.classList.remove("on");
-          headerBackground.classList.remove("on");
-          menuList[idx].classList.remove("mouse_enter");
->>>>>>> 913d0a9995007b294700c0bd7e40be41c2d343c8
         }
       });
     });
@@ -128,11 +85,7 @@ export default function Header() {
       <header
         onMouseEnter={headerEnter}
         onMouseLeave={headerLeave}
-<<<<<<< HEAD
         className={`${headerOn ? "on" : ""} ${scrollOn ? "scrollOn" : ""}`}
-=======
-        className={`${headerOn ? "on" : ""} ${scrollOn? "scrollOn":""}`}
->>>>>>> 913d0a9995007b294700c0bd7e40be41c2d343c8
       >
         <div className="header_inner">
           <div className="header_menu">
@@ -167,7 +120,6 @@ export default function Header() {
                   <a>우먼</a>
                 </Link>
                 <div className="detail_menu">
-<<<<<<< HEAD
                   <div className="detail_inner cboth">
                     <ul>
                       <li>
@@ -184,22 +136,10 @@ export default function Header() {
                         <Link legacyBehavior href="#">
                           <a>전체보기</a>
                         </Link>
-=======
-                    <ul>
-                      <li>
-                        <Link legacyBehavior href="#"><a>신상품</a></Link>
-                      </li>
-                      <li>
-                        <Link legacyBehavior href="#"><a>베스트</a></Link>
-                      </li>
-                      <li>
-                        <Link legacyBehavior href="#"><a>전체보기</a></Link>
->>>>>>> 913d0a9995007b294700c0bd7e40be41c2d343c8
                       </li>
                     </ul>
                     <ul>
                       <li>
-<<<<<<< HEAD
                         <Link legacyBehavior href="#">
                           <a>아우터</a>
                         </Link>
@@ -237,36 +177,11 @@ export default function Header() {
                     </ul>
                   </div>
                 </div>
-=======
-                        <Link legacyBehavior href="#"><a>아우터</a></Link>
-                      </li>
-                      <li>
-                        <Link legacyBehavior href="#"><a>상의</a></Link>
-                      </li>
-                      <li>
-                        <Link legacyBehavior href="#"><a>하의</a></Link>
-                      </li>
-                      <li>
-                        <Link legacyBehavior href="#"><a>원피스</a></Link>
-                      </li>
-                      <li>
-                        <Link legacyBehavior href="#"><a>액세서리</a></Link>
-                      </li>
-                      <li>
-                        <Link legacyBehavior href="#"><a>이너/언더웨어</a></Link>
-                      </li>
-                      <li>
-                        <Link legacyBehavior href="#"><a>홈웨어/잠옷</a></Link>
-                      </li>
-                    </ul>
-                  </div>
->>>>>>> 913d0a9995007b294700c0bd7e40be41c2d343c8
               </li>
               <li>
                 <Link legacyBehavior href="/man" title="맨">
                   <a>맨</a>
                 </Link>
-<<<<<<< HEAD
                 <div className="detail_menu">
                   <div className="detail_inner cboth">
                     <ul>
@@ -284,23 +199,10 @@ export default function Header() {
                         <Link legacyBehavior href="#">
                           <a>전체보기</a>
                         </Link>
-=======
-                  <div className="detail_menu">
-                    <ul>
-                      <li>
-                        <Link legacyBehavior href="#"><a>신상품</a></Link>
-                      </li>
-                      <li>
-                        <Link legacyBehavior href="#"><a>베스트</a></Link>
-                      </li>
-                      <li>
-                        <Link legacyBehavior href="#"><a>전체보기</a></Link>
->>>>>>> 913d0a9995007b294700c0bd7e40be41c2d343c8
                       </li>
                     </ul>
                     <ul>
                       <li>
-<<<<<<< HEAD
                         <Link legacyBehavior href="#">
                           <a>아우터</a>
                         </Link>
@@ -338,37 +240,11 @@ export default function Header() {
                     </ul>
                   </div>
                 </div>
-=======
-                        <Link legacyBehavior href="#"><a>아우터</a></Link>
-                      </li>
-                      <li>
-                        <Link legacyBehavior href="#"><a>상의</a></Link>
-                      </li>
-                      <li>
-                        <Link legacyBehavior href="#"><a>하의</a></Link>
-                      </li>
-                      <li>
-                        <Link legacyBehavior href="#"><a>원피스</a></Link>
-                      </li>
-                      <li>
-                        <Link legacyBehavior href="#"><a>액세서리</a></Link>
-                      </li>
-                      <li>
-                        <Link legacyBehavior href="#"><a>이너/언더웨어</a></Link>
-                      </li>
-                      <li>
-                        <Link legacyBehavior href="#"><a>홈웨어/잠옷</a></Link>
-                      </li>
-                    </ul>
-                    
-                  </div>
->>>>>>> 913d0a9995007b294700c0bd7e40be41c2d343c8
               </li>
               <li>
                 <Link legacyBehavior href="/kids" title="키즈">
                   <a>키즈</a>
                 </Link>
-<<<<<<< HEAD
                 <div className="detail_menu">
                   <div className="detail_inner cboth">
                     <ul>
@@ -386,23 +262,10 @@ export default function Header() {
                         <Link legacyBehavior href="#">
                           <a>전체보기</a>
                         </Link>
-=======
-                  <div className="detail_menu">
-                    <ul>
-                      <li>
-                        <Link legacyBehavior href="#"><a>신상품</a></Link>
-                      </li>
-                      <li>
-                        <Link legacyBehavior href="#"><a>베스트</a></Link>
-                      </li>
-                      <li>
-                        <Link legacyBehavior href="#"><a>전체보기</a></Link>
->>>>>>> 913d0a9995007b294700c0bd7e40be41c2d343c8
                       </li>
                     </ul>
                     <ul>
                       <li>
-<<<<<<< HEAD
                         <Link legacyBehavior href="#">
                           <a>아우터</a>
                         </Link>
@@ -440,30 +303,6 @@ export default function Header() {
                     </ul>
                   </div>
                 </div>
-=======
-                        <Link legacyBehavior href="#"><a>아우터</a></Link>
-                      </li>
-                      <li>
-                        <Link legacyBehavior href="#"><a>상의</a></Link>
-                      </li>
-                      <li>
-                        <Link legacyBehavior href="#"><a>하의</a></Link>
-                      </li>
-                      <li>
-                        <Link legacyBehavior href="#"><a>원피스</a></Link>
-                      </li>
-                      <li>
-                        <Link legacyBehavior href="#"><a>액세서리</a></Link>
-                      </li>
-                      <li>
-                        <Link legacyBehavior href="#"><a>이너/언더웨어</a></Link>
-                      </li>
-                      <li>
-                        <Link legacyBehavior href="#"><a>홈웨어/잠옷</a></Link>
-                      </li>
-                    </ul>
-                  </div>
->>>>>>> 913d0a9995007b294700c0bd7e40be41c2d343c8
               </li>
             </ul>
 
@@ -542,7 +381,6 @@ export default function Header() {
       </header>
       <style jsx>{`
         .header_back {
-<<<<<<< HEAD
           position: fixed;
           top: 0;
           left: 0;
@@ -566,22 +404,6 @@ export default function Header() {
         .header_back.on {
           background: rgba(0, 0, 0, 0.7);
           z-index: 998;
-=======
-          position:fixed;
-          top:0;
-          left:0;
-          display: block;
-          width:100%;
-          height:100%;
-          background:rgba(0,0,0,0);
-          z-index:0;
-          transition:all 0.3s linear 0s;
-        }
-
-        .header_back.on{
-          background:rgba(0,0,0,0.7);
-          z-index:998;
->>>>>>> 913d0a9995007b294700c0bd7e40be41c2d343c8
         }
 
         header {
@@ -598,7 +420,6 @@ export default function Header() {
           background-color: #fff;
         }
 
-<<<<<<< HEAD
         header.scrollOn {
           position: fixed;
           top: 0;
@@ -608,17 +429,6 @@ export default function Header() {
         .header_inner {
           max-width: 1440px;
           width: 90%;
-=======
-        header.scrollOn{
-          position: fixed;
-          top:0;
-          left:0;
-        }
-
-        .header_inner {
-          max-width:1440px;
-          width:90%;
->>>>>>> 913d0a9995007b294700c0bd7e40be41c2d343c8
           height: 100%;
           margin: 0 auto;
         }
@@ -633,20 +443,12 @@ export default function Header() {
           float: left;
         }
 
-<<<<<<< HEAD
         .logo > a {
-=======
-        .logo>a {
->>>>>>> 913d0a9995007b294700c0bd7e40be41c2d343c8
           display: flex;
           align-items: center;
           height: 100%;
         }
-<<<<<<< HEAD
         .logo > a > img {
-=======
-        .logo>a>img {
->>>>>>> 913d0a9995007b294700c0bd7e40be41c2d343c8
         }
 
         .header_menu ul.top_menu {
@@ -656,20 +458,12 @@ export default function Header() {
           float: left;
           height: 100%;
         }
-<<<<<<< HEAD
         .header_menu > ul.top_menu > li {
-=======
-        .header_menu>ul.top_menu>li {
->>>>>>> 913d0a9995007b294700c0bd7e40be41c2d343c8
           display: inline-block;
           height: 100%;
           padding: 0 20px;
         }
-<<<<<<< HEAD
         .header_menu > ul.top_menu > li > a {
-=======
-        .header_menu>ul.top_menu li>a {
->>>>>>> 913d0a9995007b294700c0bd7e40be41c2d343c8
           position: relative;
           display: block;
           height: 100%;
@@ -679,11 +473,7 @@ export default function Header() {
           text-decoration: none;
         }
 
-<<<<<<< HEAD
         .header_menu > ul.top_menu > li > a::after {
-=======
-        .header_menu>ul.top_menu li>a::after {
->>>>>>> 913d0a9995007b294700c0bd7e40be41c2d343c8
           content: "";
           display: block;
           position: absolute;
@@ -696,49 +486,24 @@ export default function Header() {
           transition: all 0.3s linear 0s;
         }
 
-<<<<<<< HEAD
         .header_menu > ul.top_menu > li:hover > a::after {
-=======
-        .header_menu>ul.top_menu>li:hover>a::after {
->>>>>>> 913d0a9995007b294700c0bd7e40be41c2d343c8
           width: 100%;
           opacity: 1;
         }
 
-<<<<<<< HEAD
         .header_menu > ul.user_menu {
-=======
-        .header_menu>ul.top_menu li>.detail_menu{
-          position: absolute;
-          top:90px;
-          left:0;
-          width: 100%;
-          padding:50px 5% 0 5%;
-          background: red;
-        }
-
-        .header_menu>ul.user_menu {
->>>>>>> 913d0a9995007b294700c0bd7e40be41c2d343c8
           display: flex;
           align-content: center;
           flex-wrap: wrap;
           float: right;
           height: 100%;
         }
-<<<<<<< HEAD
         .header_menu > ul.user_menu > li {
-=======
-        .header_menu>ul.user_menu>li {
-          display: flex;
-          align-content: center;
-          flex-wrap: wrap;
->>>>>>> 913d0a9995007b294700c0bd7e40be41c2d343c8
           display: inline-block;
           height: 100%;
           margin-right: 32px;
         }
 
-<<<<<<< HEAD
         .header_menu > ul.user_menu > li:first-child {
           position: relative;
         }
@@ -776,13 +541,6 @@ export default function Header() {
         }
 
         .header_menu > ul.user_menu > li > a {
-=======
-        .header_menu>ul.user_menu>li:last-child {
-          margin-right: 0px;
-        }
-
-        .header_menu>ul.user_menu>li>a {
->>>>>>> 913d0a9995007b294700c0bd7e40be41c2d343c8
           display: block;
           line-height: 90px;
           color: #fff;
@@ -790,7 +548,6 @@ export default function Header() {
           text-decoration: none;
         }
 
-<<<<<<< HEAD
         header.on .header_menu > ul.user_menu > li > a {
           transition: opacity 0.3s linear 0s;
           opacity: 0.5;
@@ -932,29 +689,8 @@ export default function Header() {
         }
 
         header.on .header_menu > ul.top_menu > li > a.red_color {
-=======
-        header.on .header_menu>ul.top_menu>li>a {
-          color: #000;
-        }
-
-        header.on .header_menu>ul.top_menu.on>li>a{
-          opacity:0.4;
-        }
-
-        header.on .header_menu>ul.top_menu>li.mouse_enter>a {
-          opacity:1;
-        }
-
-        .header_menu>ul.top_menu>li>a.red_color {
           color: #c41e20;
         }
-
-        header.on .header_menu>ul.top_menu>li>a.red_color {
->>>>>>> 913d0a9995007b294700c0bd7e40be41c2d343c8
-          color: #c41e20;
-        }
-
-
       `}</style>
     </>
   );
