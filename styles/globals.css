@@ -3,6 +3,8 @@
    License: none (public domain)
 */
 
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;200;300;400;500;600;700;800;900&display=swap");
+
 html,
 body,
 div,
@@ -140,4 +142,9 @@ table {
 div.swiper-button-prev:after,
 div.swiper-button-next:after {
   color: #000 !important;
+}
+
+body {
+  height: 3000px;
+  font-family: "Noto Sans KR", sans-serif;
 }
