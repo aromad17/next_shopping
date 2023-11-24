@@ -145,6 +145,20 @@ div.swiper-button-next:after {
 }
 
 body {
-  height: 3000px;
   font-family: "Noto Sans KR", sans-serif;
+}
+
+.swiper-slide {
+  opacity: 0 !important;
+}
+
+.swiper-slide.swiper-slide-active {
+  opacity: 1 !important;
+}
+
+.swiper-pagination-fraction,
+.swiper-pagination-custom,
+.swiper-horizontal > .swiper-pagination-bullets,
+.swiper-pagination-bullets.swiper-pagination-horizontal {
+  bottom: 5% !important;
 }
