@@ -418,6 +418,8 @@ export default function Home() {
         .weekly_wrap > .inner > .weekly_items_wrap > .weekly_items > ul {
           display: flex;
           position: absolute;
+          top: 0;
+          left: -10000px;
           flex-wrap: wrap;
           opacity: 0;
           transition: opacity 0.3s linear 0s;
@@ -582,6 +584,7 @@ export default function Home() {
           min-height: 415px;
           max-height: 575.05px;
           object-fit: cover;
+          transform: scale(1);
           transition: transform 0.2s linear 0s;
         }
         .weekly_wrap
