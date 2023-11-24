@@ -325,7 +325,7 @@ export default function Home() {
         .weekly_wrap > .inner > .weekly_items > ul {
           position: absolute;
           top: 0;
-          left: 0;
+          left: 10000px;
           flex-wrap: wrap;
           display: flex;
           opacity: 0;
@@ -334,6 +334,8 @@ export default function Home() {
 
         .weekly_wrap > .inner > .weekly_items > ul.on {
           opacity: 1;
+          left: 0;
+          transform: translate(0px;);
         }
 
         .weekly_wrap > .inner > .weekly_items > ul > li {
