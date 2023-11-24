@@ -150,7 +150,7 @@ export default function Home() {
                         <a>
                           <ul>
                             <li className="weekly_image">
-                              <span className={item.id > 3 ? "gray" : ""}>
+                              <span className={item.id > 4 ? "gray" : ""}>
                                 {item.id}
                               </span>
                               <img src={item.path} />
@@ -172,7 +172,7 @@ export default function Home() {
                         <a>
                           <ul>
                             <li className="weekly_image">
-                              <span className={item.id > 3 ? "gray" : ""}>
+                              <span className={item.id > 4 ? "gray" : ""}>
                                 {item.id}
                               </span>
                               <img src={item.path} />
@@ -194,7 +194,7 @@ export default function Home() {
                         <a>
                           <ul>
                             <li className="weekly_image">
-                              <span className={item.id > 3 ? "gray" : ""}>
+                              <span className={item.id > 4 ? "gray" : ""}>
                                 {item.id}
                               </span>
                               <img src={item.path} />
@@ -216,7 +216,7 @@ export default function Home() {
                         <a>
                           <ul>
                             <li className="weekly_image">
-                              <span className={item.id > 3 ? "gray" : ""}>
+                              <span className={item.id > 4 ? "gray" : ""}>
                                 {item.id}
                               </span>
                               <img src={item.path} />
