@@ -8,10 +8,18 @@ export default function Header() {
   const [detailMenu, setDetailMenu] = useState<HTMLElement[]>();
 
   const headerEnter = (): void => {
-    setHeaderOn(true);
+    let winScroll: number = window.scrollY;
+    if (winScroll < 70) {
+      console.log(winScroll);
+      setHeaderOn(true);
+    }
   };
   const headerLeave = (): void => {
-    setHeaderOn(false);
+    let winScroll: number = window.scrollY;
+    if (winScroll < 70) {
+      console.log(winScroll);
+      setHeaderOn(false);
+    }
   };
 
   useEffect(() => {
@@ -427,7 +435,8 @@ export default function Header() {
         }
 
         .header_inner {
-          max-width: 1440px;
+          max-width: 1740px;
+          min-width: 1200px;
           width: 90%;
           height: 100%;
           margin: 0 auto;

@@ -5,6 +5,7 @@ export interface Item {
   title: string;
   path: string;
   price: number;
+  color: Array<string>;
   isWoman: boolean;
 }
 
@@ -19,6 +20,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
           title: "파스텔 푸퍼_SPJPD4TG01",
           path: "/images/weekly/woman/1.jpg",
           price: 66900,
+          color: ["#ef5777", "#575fcf", "#d2dae2", "#0be881"],
           isWoman: true,
         },
         {
@@ -26,6 +28,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
           title: "파스텔 푸퍼_SPJPD4TG01",
           path: "/images/weekly/woman/2.jpg",
           price: 66900,
+          color: ["#ef5777", "#575fcf", "#d2dae2", "#0be881"],
           isWoman: true,
         },
         {
@@ -33,6 +36,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
           title: "파스텔 푸퍼_SPJPD4TG01",
           path: "/images/weekly/woman/3.jpg",
           price: 66900,
+          color: ["#ef5777", "#575fcf", "#d2dae2", "#0be881"],
           isWoman: true,
         },
         {
@@ -40,13 +44,15 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
           title: "파스텔 푸퍼_SPJPD4TG01",
           path: "/images/weekly/woman/4.jpg",
           price: 66900,
-          isWoman: true,
+          color: ["#ef5777", "#575fcf", "#d2dae2", "#0be881"],
+          isWoman: false,
         },
         {
           id: 5,
           title: "파스텔 푸퍼_SPJPD4TG01",
           path: "/images/weekly/woman/5.jpg",
           price: 66900,
+          color: ["#ef5777", "#575fcf", "#d2dae2", "#0be881"],
           isWoman: true,
         },
         {
@@ -54,6 +60,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
           title: "파스텔 푸퍼_SPJPD4TG01",
           path: "/images/weekly/woman/6.jpg",
           price: 66900,
+          color: ["#ef5777", "#575fcf", "#d2dae2", "#0be881"],
           isWoman: false,
         },
         {
@@ -61,7 +68,8 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
           title: "파스텔 푸퍼_SPJPD4TG01",
           path: "/images/weekly/woman/7.jpg",
           price: 66900,
-          isWoman: false,
+          color: ["#ef5777", "#575fcf", "#d2dae2", "#0be881"],
+          isWoman: true,
         },
       ],
       // man
@@ -71,41 +79,47 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
           title: "파스텔 푸퍼_SPJPD4TG01",
           path: "/images/weekly/man/1.jpg",
           price: 66900,
-          isWoman: true,
+          color: ["#ef5777", "#575fcf", "#d2dae2", "#0be881"],
+          isWoman: false,
         },
         {
           id: 2,
           title: "파스텔 푸퍼_SPJPD4TG01",
           path: "/images/weekly/man/2.jpg",
           price: 66900,
-          isWoman: true,
+          color: ["#ef5777", "#575fcf", "#d2dae2", "#0be881"],
+          isWoman: false,
         },
         {
           id: 3,
           title: "파스텔 푸퍼_SPJPD4TG01",
           path: "/images/weekly/man/3.jpg",
           price: 66900,
-          isWoman: true,
+          color: ["#ef5777", "#575fcf", "#d2dae2", "#0be881"],
+          isWoman: false,
         },
         {
           id: 4,
           title: "파스텔 푸퍼_SPJPD4TG01",
           path: "/images/weekly/man/4.jpg",
           price: 66900,
-          isWoman: true,
+          color: ["#ef5777", "#575fcf", "#d2dae2", "#0be881"],
+          isWoman: false,
         },
         {
           id: 5,
           title: "파스텔 푸퍼_SPJPD4TG01",
           path: "/images/weekly/man/5.jpg",
           price: 66900,
-          isWoman: true,
+          color: ["#ef5777", "#575fcf", "#d2dae2", "#0be881"],
+          isWoman: false,
         },
         {
           id: 6,
           title: "파스텔 푸퍼_SPJPD4TG01",
           path: "/images/weekly/man/6.jpg",
           price: 66900,
+          color: ["#ef5777", "#575fcf", "#d2dae2", "#0be881"],
           isWoman: false,
         },
         {
@@ -113,6 +127,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
           title: "파스텔 푸퍼_SPJPD4TG01",
           path: "/images/weekly/man/7.jpg",
           price: 66900,
+          color: ["#ef5777", "#575fcf", "#d2dae2", "#0be881"],
           isWoman: false,
         },
       ],
@@ -123,6 +138,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
           title: "파스텔 푸퍼_SPJPD4TG01",
           path: "/images/weekly/kids/1.jpg",
           price: 66900,
+          color: ["#ef5777", "#575fcf", "#d2dae2", "#0be881"],
           isWoman: true,
         },
         {
@@ -130,6 +146,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
           title: "파스텔 푸퍼_SPJPD4TG01",
           path: "/images/weekly/kids/2.jpg",
           price: 66900,
+          color: ["#ef5777", "#575fcf", "#d2dae2", "#0be881"],
           isWoman: true,
         },
         {
@@ -137,6 +154,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
           title: "파스텔 푸퍼_SPJPD4TG01",
           path: "/images/weekly/kids/3.jpg",
           price: 66900,
+          color: ["#ef5777", "#575fcf", "#d2dae2", "#0be881"],
           isWoman: false,
         },
         {
@@ -144,6 +162,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
           title: "파스텔 푸퍼_SPJPD4TG01",
           path: "/images/weekly/kids/4.jpg",
           price: 66900,
+          color: ["#ef5777", "#575fcf", "#d2dae2", "#0be881"],
           isWoman: true,
         },
         {
@@ -151,6 +170,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
           title: "파스텔 푸퍼_SPJPD4TG01",
           path: "/images/weekly/kids/5.jpg",
           price: 66900,
+          color: ["#ef5777", "#575fcf", "#d2dae2", "#0be881"],
           isWoman: true,
         },
         {
@@ -158,6 +178,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
           title: "파스텔 푸퍼_SPJPD4TG01",
           path: "/images/weekly/kids/6.jpg",
           price: 66900,
+          color: ["#ef5777", "#575fcf", "#d2dae2", "#0be881"],
           isWoman: false,
         },
         {
@@ -165,6 +186,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
           title: "파스텔 푸퍼_SPJPD4TG01",
           path: "/images/weekly/kids/7.jpg",
           price: 66900,
+          color: ["#ef5777", "#575fcf", "#d2dae2", "#0be881"],
           isWoman: false,
         },
         {
@@ -172,6 +194,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
           title: "파스텔 푸퍼_SPJPD4TG01",
           path: "/images/weekly/kids/8.jpg",
           price: 66900,
+          color: ["#ef5777", "#575fcf", "#d2dae2", "#0be881"],
           isWoman: false,
         },
       ],
@@ -182,6 +205,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
           title: "파스텔 푸퍼_SPJPD4TG01",
           path: "/images/weekly/pajama/1.jpg",
           price: 66900,
+          color: ["#ef5777", "#575fcf", "#d2dae2", "#0be881"],
           isWoman: true,
         },
         {
@@ -189,6 +213,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
           title: "파스텔 푸퍼_SPJPD4TG01",
           path: "/images/weekly/pajama/2.jpg",
           price: 66900,
+          color: ["#ef5777", "#575fcf", "#d2dae2", "#0be881"],
           isWoman: true,
         },
         {
@@ -196,6 +221,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
           title: "파스텔 푸퍼_SPJPD4TG01",
           path: "/images/weekly/pajama/3.jpg",
           price: 66900,
+          color: ["#ef5777", "#575fcf", "#d2dae2", "#0be881"],
           isWoman: false,
         },
         {
@@ -203,6 +229,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
           title: "파스텔 푸퍼_SPJPD4TG01",
           path: "/images/weekly/pajama/4.jpg",
           price: 66900,
+          color: ["#ef5777", "#575fcf", "#d2dae2", "#0be881"],
           isWoman: true,
         },
         {
@@ -210,6 +237,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
           title: "파스텔 푸퍼_SPJPD4TG01",
           path: "/images/weekly/pajama/5.jpg",
           price: 66900,
+          color: ["#ef5777", "#575fcf", "#d2dae2", "#0be881"],
           isWoman: true,
         },
         {
@@ -217,6 +245,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
           title: "파스텔 푸퍼_SPJPD4TG01",
           path: "/images/weekly/pajama/6.jpg",
           price: 66900,
+          color: ["#ef5777", "#575fcf", "#d2dae2", "#0be881"],
           isWoman: false,
         },
         {
@@ -224,6 +253,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
           title: "파스텔 푸퍼_SPJPD4TG01",
           path: "/images/weekly/pajama/7.jpg",
           price: 66900,
+          color: ["#ef5777", "#575fcf", "#d2dae2", "#0be881"],
           isWoman: false,
         },
         {
@@ -231,6 +261,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
           title: "파스텔 푸퍼_SPJPD4TG01",
           path: "/images/weekly/pajama/8.jpg",
           price: 66900,
+          color: ["#ef5777", "#575fcf", "#d2dae2", "#0be881"],
           isWoman: false,
         },
       ],

@@ -129,7 +129,9 @@ table {
   border-collapse: collapse;
   border-spacing: 0;
 }
-
+a {
+  text-decoration: none;
+}
 .swiper-pagination-bullet {
   width: 15px !important;
   height: 15px !important;
