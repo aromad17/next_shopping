@@ -390,14 +390,14 @@ export default function Header() {
       <style jsx>{`
         .header_back {
           position: fixed;
-          top: 0;
+          top: -10000px;
           left: 0;
           display: block;
           width: 100%;
           height: 100%;
           background: rgba(0, 0, 0, 0);
           z-index: 0;
-          transition: all 0.3s linear 0s;
+          transition: background 0.3s linear 0s;
         }
 
         .cboth {
@@ -410,6 +410,7 @@ export default function Header() {
         }
 
         .header_back.on {
+          top: 0px;
           background: rgba(0, 0, 0, 0.7);
           z-index: 998;
         }
