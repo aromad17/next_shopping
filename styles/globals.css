@@ -150,17 +150,21 @@ body {
   font-family: "Noto Sans KR", sans-serif;
 }
 
-.swiper-slide {
+/* 슬라이드부분 */
+
+.slide_wrap .swiper-slide {
   opacity: 0 !important;
 }
 
-.swiper-slide.swiper-slide-active {
+.slide_wrap .swiper-slide.swiper-slide-active {
   opacity: 1 !important;
 }
 
-.swiper-pagination-fraction,
-.swiper-pagination-custom,
-.swiper-horizontal > .swiper-pagination-bullets,
-.swiper-pagination-bullets.swiper-pagination-horizontal {
+.slide_wrap .swiper-pagination-fraction,
+.slide_wrap .swiper-pagination-custom,
+.slide_wrap .swiper-horizontal > .swiper-pagination-bullets,
+.slide_wrap .swiper-pagination-bullets.swiper-pagination-horizontal {
   bottom: 5% !important;
 }
+
+/* 신상품부분 */

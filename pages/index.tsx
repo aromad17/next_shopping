@@ -16,6 +16,7 @@ export default function Home() {
   const [manList, setManList] = useState<Item[] | undefined>(undefined);
   const [kidsList, setKidsList] = useState<Item[] | undefined>(undefined);
   const [pajamaList, setPajamaList] = useState<Item[] | undefined>(undefined);
+  const [newList, setNewList] = useState<Item[] | undefined>(undefined);
   const [categoryList, setCategoryList] = useState<HTMLElement[]>();
   const [weeklyList, setWeeklyList] = useState<HTMLElement[]>();
 
@@ -32,6 +33,7 @@ export default function Home() {
       setManList(response.data[0][1]);
       setKidsList(response.data[0][2]);
       setPajamaList(response.data[0][3]);
+      setNewList(response.data[1][0]);
     });
     const categoryItems = document.querySelectorAll<HTMLLIElement>(
       ".weekly_category>li"
@@ -43,6 +45,10 @@ export default function Home() {
     setWeeklyList(Array.from(weeklyItems));
   }, []);
 
+  if (weeklyList !== undefined) {
+    weeklyList[0].classList.add("on");
+    weeklyList[0].style.opacity = "1";
+  }
   if (categoryList !== undefined) {
     categoryList.forEach((item, idx) => {
       if (weeklyList !== undefined) {
@@ -50,6 +56,11 @@ export default function Home() {
           e.preventDefault();
           activationOn(idx, categoryList);
           activationOn(idx, weeklyList);
+          weeklyList[idx].style.opacity = "0";
+
+          setTimeout(() => {
+            weeklyList[idx].style.opacity = "1";
+          }, 100);
         });
       }
     });
@@ -308,7 +319,61 @@ export default function Home() {
             </div>
           </div>
         </div>
-        <div className="business_wrap cboth"></div>
+        <div className="new_wrap cboth">
+          <div className="inner">
+            <h2>신상품</h2>
+            <div className="new_slide_wrap">
+              <Swiper
+                style={{ width: "100%" }}
+                modules={[Navigation]}
+                spaceBetween={20}
+                slidesPerView={4}
+                navigation
+                loop={true}
+              >
+                {newList &&
+                  newList.map((item, index) => (
+                    <SwiperSlide key={index} className="new_item">
+                      <Link legacyBehavior href="#">
+                        <a>
+                          <div className="item_img">
+                            <img src={item.path} alt={item.title} />
+                          </div>
+                          <div className="item_title">{item.title}</div>
+                          <div className="item_price">
+                            {item.price.toLocaleString()}
+                          </div>
+                          <div className="item_color">
+                            {item.color.map((color, idx) => (
+                              <span
+                                key={idx}
+                                style={{
+                                  backgroundColor: color,
+                                  display: "inline-block",
+                                  width: "10px",
+                                  height: "10px",
+                                  marginRight: "5px",
+                                }}
+                              ></span>
+                            ))}
+                          </div>
+                          <div className={`isWoman `}>
+                            {item.isWoman
+                              ? "여성용"
+                              : item.isMan
+                              ? "남성용"
+                              : item.isMan && item.isWoman
+                              ? ""
+                              : "남녀공용"}
+                          </div>
+                        </a>
+                      </Link>
+                    </SwiperSlide>
+                  ))}
+              </Swiper>
+            </div>
+          </div>
+        </div>
         <div className="style_wrap cboth"></div>
         <div className="lookbook_wrap cboth"></div>
         <div className="snap_wrap cboth"></div>
@@ -346,11 +411,9 @@ export default function Home() {
           text-align: center;
           font-size: 42px;
           font-weight: 600;
-          margin-bottom: 50px;
+          margin: 50px 0 60px;
         }
-        .slide_wrap {
-          margin-bottom: 70px;
-        }
+
         .slide_img_wrap {
           display: block;
           width: 100%;
@@ -416,18 +479,15 @@ export default function Home() {
         }
 
         .weekly_wrap > .inner > .weekly_items_wrap > .weekly_items > ul {
-          display: flex;
-          position: absolute;
-          top: 0;
-          left: -10000px;
-          flex-wrap: wrap;
+          display: none;
           opacity: 0;
-          transition: opacity 0.3s linear 0s;
+          transition: opacity 0.5s linear 0s;
         }
 
         .weekly_wrap > .inner > .weekly_items_wrap > .weekly_items > ul.on {
-          opacity: 1;
-          left: 0;
+          display: flex;
+          flex-wrap: wrap;
+          opacity: 0;
         }
 
         .weekly_wrap > .inner > .weekly_items_wrap > .weekly_items > ul > li {
@@ -646,6 +706,65 @@ export default function Home() {
           > ul
           > li:last-child.on {
           display: inline-block;
+        }
+
+        /* new */
+        .new_slide_wrap {
+          width: 100%;
+        }
+
+        .item_img {
+          position: relative;
+        }
+
+        .item_img::after {
+          position: absolute;
+          left: 0;
+          top: 0;
+          content: "";
+          display: block;
+          width: 100%;
+          height: 100%;
+          background: #fff;
+          opacity: 0;
+        }
+
+        .item_img:hover::after {
+          opacity: 0.2;
+        }
+
+        .item_img img {
+          width: 100%;
+        }
+
+        .item_title {
+          font-size: 16px;
+          line-height: 22px;
+          color: #1a1a1a;
+          margin: 20px 0 12px;
+        }
+        .item_price {
+          font-size: 22px;
+          line-height: 18px;
+          color: #1a1a1a;
+          font-weight: 500;
+        }
+
+        .item_color {
+          margin-top: 10px;
+        }
+        .isWoman {
+          display: inline-block;
+          font-size: 10px;
+          margin: 10px 0;
+          background-color: #000;
+          color: #fff;
+          padding: 2px;
+          width: 40px;
+          text-align: center;
+        }
+        .isWoman.none {
+          display: none;
         }
       `}</style>
     </>
