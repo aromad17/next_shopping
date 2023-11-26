@@ -138,7 +138,7 @@ a {
 }
 
 .swiper-pagination-bullet.swiper-pagination-bullet-active {
-  background-color: #000 !important;
+  background-color: #c41e20 !important;
 }
 
 div.swiper-button-prev:after,
@@ -168,3 +168,39 @@ body {
 }
 
 /* 신상품부분 */
+
+/* 스타일 부분 */
+
+.style_wrap .swiper-button-prev {
+  left: 20px;
+}
+.style_wrap .swiper-button-next {
+  right: 20px;
+}
+
+.style_wrap .swiper-button-prev::after,
+.style_wrap .swiper-button-next::after {
+  color: #e1e1e1 !important;
+}
+
+/* 룩북 */
+.lookbook_slide_wrap div.swiper-button-prev,
+.lookbook_slide_wrap div.swiper-button-next {
+  opacity: 0.5 !important;
+}
+
+.lookbook_slide_wrap div.swiper-button-prev:hover,
+.lookbook_slide_wrap div.swiper-button-next:hover {
+  opacity: 0.8 !important;
+}
+.lookbook_slide_wrap div.swiper-button-prev {
+  left: 50px;
+}
+.lookbook_slide_wrap div.swiper-button-next {
+  right: 50px;
+}
+
+.lookbook_slide_wrap div.swiper-button-prev:after,
+div.swiper-button-next:after {
+  color: #e1e1e1 !important;
+}

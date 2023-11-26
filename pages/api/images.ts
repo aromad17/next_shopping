@@ -10,8 +10,15 @@ export interface Item {
   isMan?: boolean;
 }
 
+export interface LookBook {
+  id: number;
+  title: string;
+  path: string;
+  subtitle: string;
+}
+
 export default function handler(req: NextApiRequest, res: NextApiResponse) {
-  const imageList: Array<Array<Array<Item>>> = [
+  const imageList: Array<Array<Array<Item | LookBook>>> = [
     // weekly
     [
       // woman
@@ -382,11 +389,158 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
     ],
     // style
     [
-      // lookbook
+      [
+        {
+          id: 1,
+          title: "(NEWYORK) 트랙 긴팔티_SPLWD49C91",
+          path: "/images/style/1.jpg",
+          price: 66900,
+          color: ["#ef5777", "#575fcf"],
+          isWoman: true,
+          isMan: true,
+        },
+        {
+          id: 2,
+          title: "(NEWYORK) 트랙 긴팔티_SPLWD49C91",
+          path: "/images/style/2.jpg",
+          price: 66900,
+          color: ["#ef5777"],
+          isWoman: true,
+          isMan: true,
+        },
+        {
+          id: 3,
+          title: "(NEWYORK) 트랙 긴팔티_SPLWD49C91",
+          path: "/images/style/3.jpg",
+          price: 66900,
+          color: ["#ef5777", "#d2dae2", "#0be881"],
+          isWoman: true,
+          isMan: true,
+        },
+        {
+          id: 4,
+          title: "(NEWYORK) 트랙 긴팔티_SPLWD49C91",
+          path: "/images/style/4.jpg",
+          price: 66900,
+          color: ["#575fcf", "#d2dae2", "#0be881"],
+          isWoman: false,
+          isMan: true,
+        },
+        {
+          id: 5,
+          title: "(NEWYORK) 트랙 긴팔티_SPLWD49C91",
+          path: "/images/style/5.jpg",
+          price: 66900,
+          color: ["#ef5777", "#575fcf", "#d2dae2", "#0be881"],
+          isWoman: true,
+          isMan: true,
+        },
+        {
+          id: 6,
+          title: "(NEWYORK) 트랙 긴팔티_SPLWD49C91",
+          path: "/images/style/6.jpg",
+          price: 66900,
+          color: ["#ef5777", "#575fcf", "#d2dae2", "#0be881"],
+          isWoman: false,
+          isMan: false,
+        },
+        {
+          id: 7,
+          title: "(NEWYORK) 트랙 긴팔티_SPLWD49C91",
+          path: "/images/style/7.jpg",
+          price: 66900,
+          color: ["#ef5777", "#575fcf", "#d2dae2", "#0be881"],
+          isWoman: true,
+          isMan: true,
+        },
+        {
+          id: 8,
+          title: "(NEWYORK) 트랙 긴팔티_SPLWD49C91",
+          path: "/images/style/8.jpg",
+          price: 66900,
+          color: ["#575fcf", "#d2dae2", "#0be881"],
+          isWoman: true,
+          isMan: true,
+        },
+        {
+          id: 9,
+          title: "(NEWYORK) 트랙 긴팔티_SPLWD49C91",
+          path: "/images/style/9.jpg",
+          price: 66900,
+          color: ["#ef5777", "#575fcf", "#d2dae2"],
+          isWoman: true,
+          isMan: true,
+        },
+        {
+          id: 10,
+          title: "(NEWYORK) 트랙 긴팔티_SPLWD49C91",
+          path: "/images/new/10.jpg",
+          price: 66900,
+          color: ["#ef5777", "#d2dae2", "#0be881"],
+          isWoman: true,
+          isMan: true,
+        },
+      ],
     ],
-    // snap
-    [],
-    // 추가적인 배열들을 만들 수 있어요.
+    // lookbook
+    [
+      [
+        {
+          id: 1,
+          title: "FEEL YOUR ENERGY",
+          path: "/images/lookbook/1.jpg",
+          subtitle: "윈드브레이커와 다시 달린 계절",
+        },
+        {
+          id: 2,
+          title: "MOOD OF MINIMAL",
+          path: "/images/lookbook/2.jpg",
+          subtitle: "차분함과 간결함으로 채운 미니멀룩",
+        },
+        {
+          id: 3,
+          title: "PAJAMA OLYMPIAD",
+          path: "/images/lookbook/3.jpg",
+          subtitle: "집안에서 펼쳐지는 파자마 올림피아드",
+        },
+        {
+          id: 4,
+          title: "WALK IN THE CAMPUS",
+          path: "/images/lookbook/4.jpg",
+          subtitle: "캠퍼스에서 펼쳐지는 아메리칸 캐주얼 모드",
+        },
+        {
+          id: 5,
+          title: "CITYBOY LOVES DENIM",
+          path: "/images/lookbook/5.jpg",
+          subtitle: "도시 청춘을 위한 데님 컬렉션",
+        },
+        {
+          id: 6,
+          title: "스파오 X 달빛천사",
+          path: "/images/lookbook/6.jpg",
+          subtitle: "영원한 아이돌 풀문의 18년만의 귀환",
+        },
+        {
+          id: 7,
+          title: "WARM BREEZE SWEATER",
+          path: "/images/lookbook/7.jpg",
+          subtitle: "계절을 채우는 햇살과 바람을 입은 스웨터",
+        },
+        {
+          id: 8,
+          title: "ROYAL BLUE SPORTS CLUB",
+          path: "/images/lookbook/8.jpg",
+          subtitle: "코트와 일상에서 빛나는 테니스 플레이어 룩",
+        },
+        {
+          id: 9,
+          title: "ROMACTIC Office",
+          path: "/images/lookbook/9.jpg",
+          subtitle: "일상을 바라보는 로맥틴한 시선",
+        },
+      ],
+    ],
   ];
 
   res.status(200).json(imageList);

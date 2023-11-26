@@ -9,7 +9,7 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/effect-fade";
-import { Item } from "./api/images";
+import { Item, LookBook } from "./api/images";
 
 export default function Home() {
   const [womanList, setWomanList] = useState<Item[] | undefined>(undefined);
@@ -17,6 +17,10 @@ export default function Home() {
   const [kidsList, setKidsList] = useState<Item[] | undefined>(undefined);
   const [pajamaList, setPajamaList] = useState<Item[] | undefined>(undefined);
   const [newList, setNewList] = useState<Item[] | undefined>(undefined);
+  const [styleList, setStyleList] = useState<Item[] | undefined>(undefined);
+  const [lookbookList, setLookbookList] = useState<LookBook[] | undefined>(
+    undefined
+  );
   const [categoryList, setCategoryList] = useState<HTMLElement[]>();
   const [weeklyList, setWeeklyList] = useState<HTMLElement[]>();
 
@@ -34,6 +38,9 @@ export default function Home() {
       setKidsList(response.data[0][2]);
       setPajamaList(response.data[0][3]);
       setNewList(response.data[1][0]);
+      setStyleList(response.data[2][0]);
+      setLookbookList(response.data[3][0]);
+      console.log(lookbookList);
     });
     const categoryItems = document.querySelectorAll<HTMLLIElement>(
       ".weekly_category>li"
@@ -392,14 +399,117 @@ export default function Home() {
             </li>
           </ul>
         </div>
-        <div className="lookbook_wrap cboth"></div>
-        <div className="snap_wrap cboth"></div>
+        <div className="style_wrap cboth" style={{ position: "relative" }}>
+          <h2>스타일 픽</h2>
+          <div className="style_slide_wrap">
+            <Swiper
+              style={{
+                position: "unset",
+                width: "90%",
+                minWidth: "1200px",
+                transition: "left 0.5s ease-out 0s",
+                paddingBottom: "50px",
+                margin: "0 auto",
+              }}
+              modules={[Navigation, Pagination, Autoplay]}
+              spaceBetween={20}
+              slidesPerView={3}
+              navigation
+              pagination={{ clickable: true }}
+              loop={true}
+              autoplay={{ delay: 3000 }}
+            >
+              {styleList &&
+                styleList.map((item, index) => (
+                  <SwiperSlide key={index} className="new_item">
+                    <Link legacyBehavior href="#">
+                      <a>
+                        <div className="item_img">
+                          <img src={item.path} alt={item.title} />
+                        </div>
+                        <div className="item_title">{item.title}</div>
+                        <div className="item_price">
+                          {item.price.toLocaleString()}
+                        </div>
+                        <div className="item_color">
+                          {item.color.map((color, idx) => (
+                            <span
+                              key={idx}
+                              style={{
+                                backgroundColor: color,
+                                display: "inline-block",
+                                width: "10px",
+                                height: "10px",
+                                marginRight: "5px",
+                              }}
+                            ></span>
+                          ))}
+                        </div>
+                        <div className={`isWoman `}>
+                          {item.isWoman
+                            ? "여성용"
+                            : item.isMan
+                            ? "남성용"
+                            : item.isMan && item.isWoman
+                            ? ""
+                            : "남녀공용"}
+                        </div>
+                      </a>
+                    </Link>
+                  </SwiperSlide>
+                ))}
+            </Swiper>
+          </div>
+        </div>
+        <div className="lookbook_wrap cboth">
+          <h2 style={{ float: "left" }}>룩북</h2>
+          <div
+            className="lookbook_slide_wrap"
+            style={{
+              float: "left",
+              width: "100%",
+              margin: "0 auto",
+              position: "relative",
+            }}
+          >
+            <Swiper
+              style={{ position: "unset", width: "85%", overflow: "visible" }}
+              modules={[Navigation]}
+              spaceBetween={20}
+              slidesPerView={2}
+              navigation
+              loop={true}
+              initialSlide={1}
+              loopAdditionalSlides={2}
+              effect="slide" // slide 이펙트 사용
+              speed={500} // 이동 속도 설정 (밀리초 단위)
+              direction="horizontal" // 이동 방향 설정 (수직이면 "vertical", 수평이면 "horizontal")
+              className="lookbook_swiper"
+            >
+              {lookbookList &&
+                lookbookList.map((item, index) => (
+                  <SwiperSlide key={index}>
+                    <Link legacyBehavior href="#">
+                      <a>
+                        <div className="lookbook_item">
+                          <img src={item.path} style={{ width: "100%" }} />
+                          <h3>{item.title}</h3>
+                          <h4>{item.subtitle}</h4>
+                        </div>
+                      </a>
+                    </Link>
+                  </SwiperSlide>
+                ))}
+            </Swiper>
+          </div>
+        </div>
       </div>
 
       <style jsx>{`
         .wrap {
           width: 100%;
           height: 100%;
+          overflow: hidden;
         }
 
         .inner {
@@ -806,6 +916,75 @@ export default function Home() {
         }
         .business_wrap > ul > li > a > img {
           width: 100%;
+        }
+
+        /* 스타일픽 */
+        .style_slide_wrap {
+          position: relative;
+        }
+
+        /* 룩북 */
+        .lookbook_wrap::after {
+          content: "";
+          display: block;
+          clear: both;
+        }
+
+        .lookbook_item {
+          position: relative;
+          color: #fff;
+          overflow: hidden;
+        }
+        .lookbook_item:after {
+          content: "";
+          position: absolute;
+          top: 0;
+          left: 0;
+          display: block;
+          width: 100%;
+          height: 100%;
+          background-color: rgba(0, 0, 0, 0.3);
+          transition: background-color 0.2s linear 0s;
+        }
+
+        .lookbook_item:hover::after {
+          background-color: rgba(0, 0, 0, 0.7);
+        }
+
+        .lookbook_item img {
+          transition: transform 0.2s linear 0s;
+        }
+
+        .lookbook_item:hover img {
+          transform: scale(1.2);
+        }
+
+        .lookbook_item h3 {
+          position: absolute;
+          left: 50%;
+          top: 50%;
+          transform: translate(-50%, -50%);
+          width: 100%;
+          font-size: 50px;
+          font-weight: 700;
+          text-align: center;
+          line-height: 1;
+          letter-spacing: -1px;
+          z-index: 5;
+        }
+        .lookbook_item h4 {
+          position: absolute;
+          left: 40px;
+          top: 30px;
+          width: 100%;
+          font-size: 20px;
+          z-index: 5;
+        }
+        .lookbook_slide_wrap .swiper-button-prev {
+          left: 50px !important;
+        }
+        .lookbook_slide_wrap .swiper-button-next {
+          right: 50px !important;
         }
       `}</style>
     </>
