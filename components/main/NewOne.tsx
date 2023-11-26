@@ -26,6 +26,7 @@ export default function NewOne() {
               slidesPerView={4}
               navigation
               style={{ width: "90%", minWidth: "1200px", position: "unset" }}
+              loop={true}
             >
               {newList.map((item, index) => (
                 <SwiperSlide key={index} className="new_item">
