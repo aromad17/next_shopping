@@ -7,7 +7,7 @@ export interface TitleName {
 export default function Seo({ title }: TitleName) {
   return (
     <Head>
-      {title ? <title>JJAPAO | {title}</title> : <title>SPAO | HOME</title>}
+      {title ? <title>JJAPAO {title}</title> : <title>SPAO | HOME</title>}
     </Head>
   );
 }
