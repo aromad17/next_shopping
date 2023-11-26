@@ -201,6 +201,6 @@ body {
 }
 
 .lookbook_slide_wrap div.swiper-button-prev:after,
-div.swiper-button-next:after {
+.lookbook_slide_wrap div.swiper-button-next:after {
   color: #e1e1e1 !important;
 }

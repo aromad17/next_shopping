@@ -924,6 +924,11 @@ export default function Home() {
         }
 
         /* 룩북 */
+        .lookbook_wrap {
+          width: 100%;
+          min-width: 1200px;
+        }
+
         .lookbook_wrap::after {
           content: "";
           display: block;
