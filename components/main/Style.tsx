@@ -3,16 +3,15 @@ import { Navigation, Pagination, Autoplay, A11y } from "swiper/modules";
 import { Item } from "../../pages/api/images";
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import axios from "axios";
 
-export default function Style() {
+export default function Style({ data }: any) {
   const [styleList, setStyleList] = useState<Item[] | undefined>(undefined);
 
   useEffect(() => {
-    axios.get("/api/images").then((response) => {
-      setStyleList(response.data[2][0]);
-    });
+    setStyleList(data[0]);
   }, []);
+
+  console.log(styleList);
 
   return (
     <>

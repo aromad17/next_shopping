@@ -3,15 +3,12 @@ import { Navigation, A11y } from "swiper/modules";
 import { Item } from "../../pages/api/images";
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import axios from "axios";
 
-export default function NewOne() {
+export default function NewOne({ data }: any) {
   const [newList, setNewList] = useState<Item[] | undefined>(undefined);
 
   useEffect(() => {
-    axios.get("/api/images").then((response) => {
-      setNewList(response.data[1][0]);
-    });
+    setNewList(data[0]);
   }, []);
 
   return (

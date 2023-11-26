@@ -6,17 +6,14 @@ import { Navigation, A11y } from "swiper/modules";
 import { LookBook } from "../../pages/api/images";
 
 import Link from "next/link";
-import axios from "axios";
 
-export default function Lookbook() {
+export default function Lookbook({ data }: any) {
   const [lookbookList, setLookbookList] = useState<LookBook[] | undefined>(
     undefined
   );
 
   useEffect(() => {
-    axios.get("/api/images").then((response) => {
-      setLookbookList(response.data[3][0]);
-    });
+    setLookbookList(data[0]);
   }, []);
 
   return (
@@ -71,7 +68,6 @@ export default function Lookbook() {
           .lookbook_wrap {
             width: 100%;
             min-width: 1200px;
-            margin-bottom: 50px;
           }
 
           .lookbook_wrap::after {

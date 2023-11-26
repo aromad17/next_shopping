@@ -1,9 +1,8 @@
 import { Item } from "../../pages/api/images";
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import axios from "axios";
 
-export default function Weekly() {
+export default function Weekly({ data }: any) {
   function activationOn(i: number, value: any) {
     for (let el of value) {
       el.classList.remove("on");
@@ -18,13 +17,12 @@ export default function Weekly() {
   const [categoryList, setCategoryList] = useState<HTMLElement[]>();
   const [weeklyList, setWeeklyList] = useState<HTMLElement[]>();
 
+  console.log(data);
   useEffect(() => {
-    axios.get("/api/images").then((response) => {
-      setWomanList(response.data[0][0]);
-      setManList(response.data[0][1]);
-      setKidsList(response.data[0][2]);
-      setPajamaList(response.data[0][3]);
-    });
+    setWomanList(data[0]);
+    setManList(data[1]);
+    setKidsList(data[2]);
+    setPajamaList(data[3]);
 
     const categoryItems = document.querySelectorAll<HTMLLIElement>(
       ".weekly_category>li"

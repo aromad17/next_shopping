@@ -5,9 +5,10 @@ export interface Item {
   title: string;
   path: string;
   price: number;
-  color: Array<string>;
+  color: string[];
   isWoman: boolean;
   isMan?: boolean;
+  subtitle?: string;
 }
 
 export interface LookBook {
