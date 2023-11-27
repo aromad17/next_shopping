@@ -2,12 +2,15 @@ const Loading = () => {
   return (
     <div
       style={{
+        width: "100vw",
+        height: "100vh",
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
-        height: "100vh",
         fontSize: "24px",
         fontWeight: "bold",
+        position: "fixed",
+        zIndex: "999",
       }}
     >
       <p>Loading...</p>
