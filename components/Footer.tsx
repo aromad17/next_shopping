@@ -24,26 +24,23 @@ export default function Footer() {
         <div className="footer_inner">
           <div className="footer_left">
             <div className="cs_center">
-              <p className="phone">1670-9600</p>
-              <p className="time">
-                상담시간 : 오전 10시~오후 5시(토요일, 공휴일 휴무)
-              </p>
+              <p className="phone">010-6685-0145</p>
+              <p className="time">상담시간 : 오전 0시~오후 12시</p>
               <p className="email">
-                email : spao@eland.co.kr(단체주문 문의)
+                email : aromad1117@naver.com (구직 문의)
                 <br />
-                email : spao_mkt@eland.co.kr(마케팅 협찬 문의)
+                email : aromad1117@naver.com (취업 문의)
               </p>
             </div>
             <div className="company_info">
-              (주)이랜드월드패션사업부<span></span>사업자등록번호 : 113-85-19030
-              [사업자정보확인]<span></span>통신판매업 신고번호 : 제 2005-01053
-              호<br />
-              대표이사 : 최운식
-              <span></span>서울특별시 금천구 가산디지털1로 159 (가산동)
-              이랜드가산동사옥<span></span>개인정보 보호책임자 : 최운식
+              (주)우리집랜드월드내방책상<span></span>사업자등록번호 :
+              000-123-45678 [만든사람정보]<span></span>백수 : 오랜시간동안
               <br />
-              사옥 주소로 상품을 발송하시면 교환ㆍ환불이 불가하므로,
-              교환ㆍ환불은 사이트 내에서 신청해주시기 바랍니다.
+              내이름 : 이상현
+              <span></span>서울특별시 동작구 성대로 279-123 (가산동)
+              우리집컴퓨터<span></span>개인정보 보호책임자 : 이상현
+              <br />
+              구직중입니다. 취업 문의는 이메일이나 문자,전화로 부탁드립니다.
             </div>
             <div className="icons">
               <ul className="icons_emblem">
