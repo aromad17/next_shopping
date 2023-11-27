@@ -37,7 +37,6 @@ export default function Home() {
             <Lookbook data={imageList[3]} />
           </>
         )}
-        {imageList.length === 0 && <Loading />}
       </div>
     </>
   );

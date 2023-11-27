@@ -10,14 +10,12 @@ export default function Header() {
   const headerEnter = (): void => {
     let winScroll: number = window.scrollY;
     if (winScroll < 70) {
-      console.log(winScroll);
       setHeaderOn(true);
     }
   };
   const headerLeave = (): void => {
     let winScroll: number = window.scrollY;
     if (winScroll < 70) {
-      console.log(winScroll);
       setHeaderOn(false);
     }
   };
