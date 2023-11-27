@@ -11,8 +11,6 @@ export default function Style({ data }: any) {
     setStyleList(data[0]);
   }, []);
 
-  console.log(styleList);
-
   return (
     <>
       <div className="style_wrap cboth" style={{ position: "relative" }}>

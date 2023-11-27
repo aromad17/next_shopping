@@ -17,7 +17,6 @@ export default function Weekly({ data }: any) {
   const [categoryList, setCategoryList] = useState<HTMLElement[]>();
   const [weeklyList, setWeeklyList] = useState<HTMLElement[]>();
 
-  console.log(data);
   useEffect(() => {
     setWomanList(data[0]);
     setManList(data[1]);
