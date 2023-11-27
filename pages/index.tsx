@@ -7,6 +7,7 @@ import Style from "@/components/main/Style";
 import Lookbook from "@/components/main/Lookbook";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import Loading from "./loading";
 
 export default function Home() {
   const [imageList, setImageList] = useState([]);
@@ -36,7 +37,7 @@ export default function Home() {
             <Lookbook data={imageList[3]} />
           </>
         )}
-        {imageList.length === 0 && <p>Loading...</p>}
+        {imageList.length === 0 && <Loading />}
       </div>
     </>
   );
