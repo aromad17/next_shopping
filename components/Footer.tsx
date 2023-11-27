@@ -451,7 +451,13 @@ export default function Footer() {
           align-items: center;
         }
         .footer_bottom ul li a {
+          opacity: 0.7;
           color: #909090;
+          transition: opacity 0.3s linear 0s;
+        }
+
+        .footer_bottom ul li:hover a {
+          opacity: 1;
         }
         .footer_bottom ul li a img {
           vertical-align: middle;
