@@ -1,5 +1,6 @@
 import { Item } from "../../pages/api/images";
 import { useEffect, useState } from "react";
+import { useRouter } from "next/router";
 import Link from "next/link";
 
 export default function Weekly({ data }: any) {
@@ -33,6 +34,29 @@ export default function Weekly({ data }: any) {
 
     setWeeklyList(Array.from(weeklyItems));
   }, []);
+  const router = useRouter();
+
+  const onClick = (
+    id: number,
+    title: string,
+    path: string,
+    price: number,
+    color: string[]
+  ) => {
+    router.push(
+      {
+        pathname: `/items/${title}/${id}`,
+        query: {
+          id,
+          title,
+          color,
+          price,
+          path,
+        },
+      },
+      `/items/${title}/${id}`
+    );
+  };
 
   if (weeklyList !== undefined) {
     weeklyList[0].classList.add("on");
@@ -86,7 +110,19 @@ export default function Weekly({ data }: any) {
               <ul className="weekly_list weekly_woman on">
                 {womanList &&
                   womanList.map((item, index) => (
-                    <li key={index}>
+                    <li
+                      key={index}
+                      onClick={(e): void => {
+                        e.preventDefault();
+                        onClick(
+                          item.id,
+                          item.title,
+                          item.path,
+                          item.price,
+                          item.color
+                        );
+                      }}
+                    >
                       <Link legacyBehavior href="#">
                         <a>
                           <ul>

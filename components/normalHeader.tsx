@@ -1,23 +1,19 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
-export default function Header() {
+export default function NormalHeader() {
   const [headerOn, setHeaderOn] = useState<boolean>(false);
+  const [headerItemPage, setHeaderItemPage] = useState<boolean>(false);
   const [scrollOn, setScrollOn] = useState<boolean>(false);
   const [menuList, setMenuList] = useState<HTMLElement[]>();
   const [detailMenu, setDetailMenu] = useState<HTMLElement[]>();
 
   const headerEnter = (): void => {
-    let winScroll: number = window.scrollY;
-    if (winScroll < 70) {
-      setHeaderOn(true);
-    }
+    setHeaderOn(true);
   };
+
   const headerLeave = (): void => {
-    let winScroll: number = window.scrollY;
-    if (winScroll < 70) {
-      setHeaderOn(false);
-    }
+    setHeaderOn(false);
   };
 
   useEffect(() => {
@@ -91,21 +87,14 @@ export default function Header() {
       <header
         onMouseEnter={headerEnter}
         onMouseLeave={headerLeave}
-        className={`${headerOn ? "on" : ""} ${scrollOn ? "scrollOn" : ""}`}
+        className="on"
       >
         <div className="header_inner">
           <div className="header_menu">
             <h1 className="logo">
               <Link legacyBehavior href="/" title="홈">
                 <a>
-                  <img
-                    src={
-                      headerOn
-                        ? "/images/top_logo_pc.png"
-                        : "/images/top_logo_pc_wh.png"
-                    }
-                    alt="logo"
-                  />
+                  <img src="/images/top_logo_pc.png" alt="logo" />
                 </a>
               </Link>
             </h1>
@@ -316,14 +305,7 @@ export default function Header() {
               <li className="mypage">
                 <Link legacyBehavior href="#">
                   <a>
-                    <img
-                      src={
-                        headerOn
-                          ? "/images/top_mypage.png"
-                          : "/images/top_mypage_wh.png"
-                      }
-                      alt=""
-                    />
+                    <img src="/images/top_mypage.png" alt="" />
                   </a>
                 </Link>
                 <ul className="sub_mypage">
@@ -342,42 +324,21 @@ export default function Header() {
               <li>
                 <Link legacyBehavior href="#">
                   <a>
-                    <img
-                      src={
-                        headerOn
-                          ? "/images/top_search.png"
-                          : "/images/top_search_wh.png"
-                      }
-                      alt=""
-                    />
+                    <img src="/images/top_search.png" alt="" />
                   </a>
                 </Link>
               </li>
               <li>
                 <Link legacyBehavior href="#">
                   <a>
-                    <img
-                      src={
-                        headerOn
-                          ? "/images/top_wish.png"
-                          : "/images/top_wish_wh.png"
-                      }
-                      alt=""
-                    />
+                    <img src="/images/top_wish.png" alt="" />
                   </a>
                 </Link>
               </li>
               <li>
                 <Link legacyBehavior href="#">
                   <a>
-                    <img
-                      src={
-                        headerOn
-                          ? "/images/top_cart_pc.png"
-                          : "/images/top_cart_pc_wh.png"
-                      }
-                      alt=""
-                    />
+                    <img src="/images/top_cart_pc.png" alt="" />
                   </a>
                 </Link>
               </li>
@@ -414,8 +375,9 @@ export default function Header() {
         }
 
         header {
-          position: absolute;
-          top: 40px;
+          position: fixed;
+          top: 0;
+          left: 0;
           width: 100%;
           height: 90px;
           z-index: 999;
@@ -565,6 +527,15 @@ export default function Header() {
           opacity: 1;
         }
 
+        header.itemPage .header_menu > ul.user_menu > li > a {
+          transition: opacity 0.3s linear 0s !important;
+          opacity: 0.5 !important;
+        }
+
+        header.itemPage .header_menu > ul.user_menu > li:hover > a {
+          opacity: 1 !important;
+        }
+
         .header_menu > ul.top_menu li > .detail_menu {
           position: absolute;
           top: -1000px;
@@ -692,12 +663,28 @@ export default function Header() {
           opacity: 1;
         }
 
+        header.itemPage .header_menu > ul.top_menu > li > a {
+          color: #000 !important;
+        }
+
+        header.itemPage .header_menu > ul.top_menu.on > li > a {
+          opacity: 0.4 !important;
+        }
+
+        header.itemPage .header_menu > ul.top_menu > li.mouse_enter > a {
+          opacity: 1 !important;
+        }
+
         .header_menu > ul.top_menu > li > a.red_color {
           color: #c41e20;
         }
 
         header.on .header_menu > ul.top_menu > li > a.red_color {
           color: #c41e20;
+        }
+
+        header.itemPage .header_menu > ul.top_menu > li > a.red_color {
+          color: #c41e20 !important;
         }
       `}</style>
     </>
