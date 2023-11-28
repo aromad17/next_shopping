@@ -12,6 +12,7 @@ import { useEffect, useState } from "react";
 import Seo from "../../components/Seo";
 import { useRouter } from "next/router";
 import axios from "axios";
+import Loading from "../loading";
 
 export default function Detail({ params }: any) {
   const router: any = useRouter();
@@ -124,7 +125,7 @@ export default function Detail({ params }: any) {
           </div>
         </div>
       ) : (
-        <div>Loading...</div>
+        <Loading />
       )}
 
       <style jsx>{`
