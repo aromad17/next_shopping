@@ -1,4 +1,3 @@
-// RouterQuery 타입 정의
 interface RouterQuery {
   id: string;
   title: string;
@@ -7,7 +6,6 @@ interface RouterQuery {
   path: string;
 }
 
-// Detail 컴포넌트에서 사용하는 코드
 import { useEffect, useState } from "react";
 import Seo from "../../components/Seo";
 import { useRouter } from "next/router";
@@ -16,23 +14,21 @@ import Loading from "../loading";
 
 export default function Detail({ params }: any) {
   const router: any = useRouter();
+
   const [pickedItem, setPickedItem]: any = useState();
   const [id, title] = params || [];
-
-  function activationOn(i: number, value: any) {
-    for (let el of value) {
-      el.classList.remove("on");
-    }
-    value[i].classList.add("on");
-  }
-
-  const [sizeList, setSizeList] = useState<HTMLElement[]>();
-  const [colorList, setColorList] = useState<HTMLElement[]>();
+  const [selectedColorIndex, setSelectedColorIndex] = useState<number | null>(
+    null
+  );
+  const [selectedSizeIndex, setSelectedSizeIndex] = useState<number | null>(
+    null
+  );
+  const sizeList = ["S", "M", "L", "XL", "XXL"];
 
   useEffect(() => {
     (async () => {
       const response = await axios.get("/api/images");
-      const results = response.data; // 응답 데이터는 response.data에 있을 것입니다.
+      const results = response.data;
 
       const flatResults = results.flatMap((innerArray: any) => innerArray);
       const finalResults = flatResults.flatMap((innerArray: any) => innerArray);
@@ -40,46 +36,21 @@ export default function Detail({ params }: any) {
       const pickItem = await finalResults.filter((item: any) => item.id == id);
       setPickedItem(pickItem[0]);
     })();
-
-    const sizeLi = document.querySelectorAll<HTMLLIElement>(".item_size>ul>li");
-    setSizeList(Array.from(sizeLi));
-
-    const colorLi =
-      document.querySelectorAll<HTMLLIElement>(".item_color>span");
-    setColorList(Array.from(colorLi));
   }, []);
 
-  if (sizeList !== undefined) {
-    sizeList.forEach((item, idx) => {
-      item.addEventListener("click", (e) => {
-        e.preventDefault();
-        activationOn(idx, sizeList);
-      });
-    });
-  }
-
-  if (colorList !== undefined) {
-    colorList.forEach((item, idx) => {
-      item.addEventListener("click", (e) => {
-        e.preventDefault();
-        activationOn(idx, colorList);
-      });
-    });
-  }
-
   return (
-    <div style={{ paddingTop: "140px" }}>
+    <div style={{ paddingTop: "120px" }}>
       <Seo title={title} />
       {pickedItem ? (
         <div className="item_wrap">
+          <p className="item_path">
+            HOME
+            {" > "}
+            {pickedItem.category.toUpperCase()}
+            {" > "}
+            {pickedItem.title}
+          </p>
           <div className="inner">
-            <p className="item_path">
-              HOME
-              {" > "}
-              {pickedItem.category.toUpperCase()}
-              {" > "}
-              {pickedItem.title}
-            </p>
             <div className="item_image">
               <img src={pickedItem.path} alt={pickedItem.title} />
             </div>
@@ -97,22 +68,28 @@ export default function Detail({ params }: any) {
                     {pickedItem.color &&
                       pickedItem.color.map((color: string, index: number) => (
                         <span
+                          className={selectedColorIndex === index ? "on" : ""}
                           key={index}
                           style={{
                             backgroundColor: color,
                             display: "inline-block",
                           }}
+                          onClick={() => setSelectedColorIndex(index)}
                         ></span>
                       ))}
                   </li>
                   <li className="item_size">
                     <h3>Size</h3>
                     <ul>
-                      <li>S</li>
-                      <li>M</li>
-                      <li>L</li>
-                      <li>XL</li>
-                      <li>XXL</li>
+                      {sizeList.map((item: string, index: number) => (
+                        <li
+                          key={index}
+                          className={selectedSizeIndex === index ? "on" : ""}
+                          onClick={() => setSelectedSizeIndex(index)}
+                        >
+                          {item}
+                        </li>
+                      ))}
                     </ul>
                   </li>
                 </ul>
@@ -130,10 +107,16 @@ export default function Detail({ params }: any) {
 
       <style jsx>{`
         .item_wrap > .inner {
-          width: 1440px;
+          display: flex;
+          flex-direction: row;
+          justify-content: center;
+          width: 80%;
+          max-width: 1400px;
+          min-width: 1200px;
         }
 
         .item_path {
+          margin-bottom: 20px;
           font-size: 13px;
           color: #909090;
           text-align: right;

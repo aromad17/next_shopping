@@ -17,7 +17,6 @@ export default function Home() {
       try {
         const response = await axios.get("/api/images");
         setImageList(response.data);
-        console.log(imageList);
       } catch (error) {
         console.error("에러사항: ", error);
       }

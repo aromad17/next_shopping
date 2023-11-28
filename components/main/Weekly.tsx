@@ -34,6 +34,9 @@ export default function Weekly({ data }: any) {
 
     setWeeklyList(Array.from(weeklyItems));
   }, []);
+
+  //useEffect끝
+
   const router = useRouter();
 
   const onClick = (
@@ -64,6 +67,7 @@ export default function Weekly({ data }: any) {
     weeklyList[0].classList.add("on");
     weeklyList[0].style.opacity = "1";
   }
+
   if (categoryList !== undefined) {
     categoryList.forEach((item, idx) => {
       if (weeklyList !== undefined) {
