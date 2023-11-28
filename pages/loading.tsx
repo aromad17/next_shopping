@@ -9,9 +9,7 @@ const Loading = () => {
           transform: "translate(-50%,-50%)",
           zIndex: "999",
         }}
-      >
-        <img src="/images/top_logo_pc_wh.png" />
-      </h1>
+      ></h1>
       <div className="loading"></div>
       <style jsx>{`
         .loading {
