@@ -29,17 +29,15 @@ export default function Home() {
     <>
       <Seo title="HOME"></Seo>
       <div className="wrap">
-        {imageList ? (
-          0 && (
-            <>
-              <Slide />
-              <Weekly data={imageList[0]} />
-              <NewOne data={imageList[1]} />
-              <Business />
-              <Style data={imageList[2]} />
-              <Lookbook data={imageList[3]} />
-            </>
-          )
+        {imageList.length > 0 ? (
+          <>
+            <Slide />
+            <Weekly data={imageList[0]} />
+            <NewOne data={imageList[1]} />
+            <Business />
+            <Style data={imageList[2]} />
+            <Lookbook data={imageList[3]} />
+          </>
         ) : (
           <Loading />
         )}
