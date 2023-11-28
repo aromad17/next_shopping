@@ -3,6 +3,7 @@ import { Navigation, Pagination, Autoplay, A11y } from "swiper/modules";
 import { Item } from "../../pages/api/images";
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import { useRouter } from "next/router";
 
 export default function Style({ data }: any) {
   const [styleList, setStyleList] = useState<Item[] | undefined>(undefined);
@@ -11,6 +12,31 @@ export default function Style({ data }: any) {
     setStyleList(data[0]);
   }, []);
 
+  const router = useRouter();
+
+  const onClick = (
+    id: number,
+    category: string,
+    title: string,
+    path: string,
+    price: number,
+    color: string[]
+  ) => {
+    router.push(
+      {
+        pathname: `/items/${id}/${title}`,
+        query: {
+          id,
+          category,
+          title,
+          color,
+          price,
+          path,
+        },
+      },
+      `/items/${id}/${title}`
+    );
+  };
   return (
     <>
       <div className="style_wrap cboth" style={{ position: "relative" }}>
@@ -37,8 +63,36 @@ export default function Style({ data }: any) {
               loop={true}
             >
               {styleList.map((item, index) => (
-                <SwiperSlide key={index} className="new_item">
-                  <Link legacyBehavior href="#">
+                <SwiperSlide
+                  key={index}
+                  className="new_item"
+                  onClick={(e): void => {
+                    e.preventDefault();
+                    onClick(
+                      item.id,
+                      item.category,
+                      item.title,
+                      item.path,
+                      item.price,
+                      item.color
+                    );
+                  }}
+                >
+                  <Link
+                    legacyBehavior
+                    href={{
+                      pathname: `/items/${item.id}/${item.title}`,
+                      query: {
+                        id: item.id,
+                        category: item.category,
+                        title: item.title,
+                        color: item.color,
+                        price: item.price,
+                        path: item.path,
+                      },
+                    }}
+                    as={`/items/${item.id}/${item.title}`}
+                  >
                     <a>
                       <div className="item_img">
                         <img src={item.path} alt={item.title} />

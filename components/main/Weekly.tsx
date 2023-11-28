@@ -38,6 +38,7 @@ export default function Weekly({ data }: any) {
 
   const onClick = (
     id: number,
+    category: string,
     title: string,
     path: string,
     price: number,
@@ -45,16 +46,17 @@ export default function Weekly({ data }: any) {
   ) => {
     router.push(
       {
-        pathname: `/items/${title}/${id}`,
+        pathname: `/items/${id}/${title}`,
         query: {
           id,
+          category,
           title,
           color,
           price,
           path,
         },
       },
-      `/items/${title}/${id}`
+      `/items/${id}/${title}`
     );
   };
 
@@ -116,6 +118,7 @@ export default function Weekly({ data }: any) {
                         e.preventDefault();
                         onClick(
                           item.id,
+                          item.category,
                           item.title,
                           item.path,
                           item.price,
@@ -123,7 +126,21 @@ export default function Weekly({ data }: any) {
                         );
                       }}
                     >
-                      <Link legacyBehavior href="#">
+                      <Link
+                        legacyBehavior
+                        href={{
+                          pathname: `/items/${item.id}/${item.title}`,
+                          query: {
+                            id: item.id,
+                            category: item.category,
+                            title: item.title,
+                            color: item.color,
+                            price: item.price,
+                            path: item.path,
+                          },
+                        }}
+                        as={`/items/${item.id}/${item.title}`}
+                      >
                         <a>
                           <ul>
                             <li className="weekly_image">
@@ -161,8 +178,35 @@ export default function Weekly({ data }: any) {
               <ul className="weekly_list weekly_man">
                 {manList &&
                   manList.map((item, index) => (
-                    <li key={index}>
-                      <Link legacyBehavior href="#">
+                    <li
+                      key={index}
+                      onClick={(e): void => {
+                        e.preventDefault();
+                        onClick(
+                          item.id,
+                          item.category,
+                          item.title,
+                          item.path,
+                          item.price,
+                          item.color
+                        );
+                      }}
+                    >
+                      <Link
+                        legacyBehavior
+                        href={{
+                          pathname: `/items/${item.id}/${item.title}`,
+                          query: {
+                            id: item.id,
+                            category: item.category,
+                            title: item.title,
+                            color: item.color,
+                            price: item.price,
+                            path: item.path,
+                          },
+                        }}
+                        as={`/items/${item.id}/${item.title}`}
+                      >
                         <a>
                           <ul>
                             <li className="weekly_image">
@@ -199,8 +243,35 @@ export default function Weekly({ data }: any) {
               <ul className="weekly_list weekly_kids">
                 {kidsList &&
                   kidsList.map((item, index) => (
-                    <li key={index}>
-                      <Link legacyBehavior href="#">
+                    <li
+                      key={index}
+                      onClick={(e): void => {
+                        e.preventDefault();
+                        onClick(
+                          item.id,
+                          item.category,
+                          item.title,
+                          item.path,
+                          item.price,
+                          item.color
+                        );
+                      }}
+                    >
+                      <Link
+                        legacyBehavior
+                        href={{
+                          pathname: `/items/${item.id}/${item.title}`,
+                          query: {
+                            id: item.id,
+                            category: item.category,
+                            title: item.title,
+                            color: item.color,
+                            price: item.price,
+                            path: item.path,
+                          },
+                        }}
+                        as={`/items/${item.id}/${item.title}`}
+                      >
                         <a>
                           <ul>
                             <li className="weekly_image">
@@ -237,8 +308,35 @@ export default function Weekly({ data }: any) {
               <ul className="weekly_list weekly_pajama">
                 {pajamaList &&
                   pajamaList.map((item, index) => (
-                    <li key={index}>
-                      <Link legacyBehavior href="#">
+                    <li
+                      key={index}
+                      onClick={(e): void => {
+                        e.preventDefault();
+                        onClick(
+                          item.id,
+                          item.category,
+                          item.title,
+                          item.path,
+                          item.price,
+                          item.color
+                        );
+                      }}
+                    >
+                      <Link
+                        legacyBehavior
+                        href={{
+                          pathname: `/items/${item.id}/${item.title}`,
+                          query: {
+                            id: item.id,
+                            category: item.category,
+                            title: item.title,
+                            color: item.color,
+                            price: item.price,
+                            path: item.path,
+                          },
+                        }}
+                        as={`/items/${item.id}/${item.title}`}
+                      >
                         <a>
                           <ul>
                             <li className="weekly_image">
