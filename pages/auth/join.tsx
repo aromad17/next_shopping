@@ -69,6 +69,29 @@ export default function Join() {
             />
           </fieldset>
         </form>
+        <span
+          style={{
+            display: "block",
+            margin: "50px auto 0",
+            opacity: "0.5",
+            fontSize: "16px",
+            lineHeight: "24px",
+            textAlign: "center",
+          }}
+        >
+          이메일주소는 이메일 형식이라면 아무렇게나 써도 가입이 가능합니다.
+        </span>
+        <span
+          style={{
+            display: "block",
+            opacity: "0.5",
+            fontSize: "16px",
+            lineHeight: "24px",
+            textAlign: "center",
+          }}
+        >
+          ex) lkasjd@aslkdj.com
+        </span>
       </div>
       <style jsx>{`
         .auth_wrap {
