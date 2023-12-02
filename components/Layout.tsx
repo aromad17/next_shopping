@@ -10,30 +10,33 @@ interface LayoutProps {
 }
 
 export default function Layout({ children }: LayoutProps) {
-  const [userInfom, setUserInfom]: any = useState();
-
+  const [userData, setUserData]: any = useState();
+  let header;
   const router = useRouter();
-  const auth = getAuth();
 
   useEffect(() => {
-    onAuthStateChanged(auth, (user) => {
-      if (user && user !== null) {
-        setUserInfom(user);
+    const auth = getAuth();
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (user) {
+        setUserData(user);
+        console.log(user);
       } else {
-        console.log("no-user");
+        setUserData(null);
+        console.log("no - user");
       }
     });
-  }, []);
 
-  let header;
+    return () => unsubscribe();
+  });
+
   if (router.pathname.startsWith("/")) {
-    header = <MainHeader userInfom={userInfom} />;
+    header = <MainHeader userData={userData} />;
     if (
       router.pathname === "/items/[...params]" ||
       router.pathname.startsWith("/auth") ||
       router.pathname.startsWith("/mypage")
     ) {
-      header = <NormalHeader userInfom={userInfom} />;
+      header = <NormalHeader userData={userData} />;
     }
   }
   return (

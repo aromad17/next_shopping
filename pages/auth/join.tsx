@@ -6,8 +6,6 @@ import { useState } from "react";
 export default function Join() {
   const [userId, setUserId] = useState("");
   const [userPw, setUserPw] = useState("");
-  const [error, setError] = useState("");
-  const [modal, setModal] = useState(false);
   const router = useRouter();
   const onChangeId = (e: any) => {
     setUserId(e.target.value);

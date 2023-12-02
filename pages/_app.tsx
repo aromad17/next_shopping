@@ -2,7 +2,9 @@ import Layout from "@/components/Layout";
 import "@/styles/globals.css";
 import type { AppProps } from "next/app";
 import firebase, { initializeApp } from "firebase/app";
-import { getAuth } from "firebase/auth";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
+import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
 
 export default function App({ Component, pageProps }: AppProps) {
   const firebaseConfig = {
@@ -16,8 +18,19 @@ export default function App({ Component, pageProps }: AppProps) {
   };
 
   const app = initializeApp(firebaseConfig);
+  const [userData, setUserData]: any = useState();
+
   const auth = getAuth();
 
+  useEffect(() => {
+    onAuthStateChanged(auth, (user) => {
+      if (user && user !== null) {
+        setUserData(user);
+      } else {
+        console.log("no-user");
+      }
+    });
+  }, []);
   return (
     <Layout>
       <Component {...pageProps} />

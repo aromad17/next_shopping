@@ -1,11 +1,14 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { getAuth, signOut } from "firebase/auth";
-export default function Header({ userInfom }: any) {
+
+export default function Header({ userData }: any) {
   const [headerOn, setHeaderOn] = useState<boolean>(false);
   const [scrollOn, setScrollOn] = useState<boolean>(false);
   const [menuList, setMenuList] = useState<HTMLElement[]>();
   const [detailMenu, setDetailMenu] = useState<HTMLElement[]>();
+
+  console.log(userData);
 
   const headerEnter = (): void => {
     let winScroll: number = window.scrollY;
@@ -317,7 +320,7 @@ export default function Header({ userInfom }: any) {
               <li className="mypage">
                 <Link
                   legacyBehavior
-                  href={userInfom !== undefined ? "/mypage" : "/auth/auth"}
+                  href={userData !== null ? "/mypage" : "/auth/auth"}
                 >
                   <a>
                     <img
@@ -333,7 +336,7 @@ export default function Header({ userInfom }: any) {
                 <ul className="sub_mypage">
                   <li
                     onClick={() => {
-                      if (userInfom !== undefined) {
+                      if (userData !== null) {
                         const auth = getAuth();
                         auth
                           .signOut()
@@ -348,12 +351,12 @@ export default function Header({ userInfom }: any) {
                   >
                     <Link
                       legacyBehavior
-                      href={userInfom !== undefined ? "/" : "/auth/auth"}
+                      href={userData !== null ? "/" : "/auth/auth"}
                     >
-                      <a>{userInfom !== undefined ? "logout" : "login"}</a>
+                      <a>{userData !== null ? "logout" : "login"}</a>
                     </Link>
                   </li>
-                  {userInfom !== undefined ? (
+                  {userData !== null ? (
                     <li>
                       <Link legacyBehavior href="/mypage">
                         <a>mypage</a>
@@ -362,6 +365,11 @@ export default function Header({ userInfom }: any) {
                   ) : (
                     <></>
                   )}
+                  <li>
+                    <Link legacyBehavior href="#">
+                      <a>order</a>
+                    </Link>
+                  </li>
                 </ul>
               </li>
               <li>

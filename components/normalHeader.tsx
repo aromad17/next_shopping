@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { getAuth, signOut } from "firebase/auth";
-export default function NormalHeader({ userInfom }: any) {
+export default function NormalHeader({ userData }: any) {
   const [headerOn, setHeaderOn] = useState<boolean>(false);
   const [headerItemPage, setHeaderItemPage] = useState<boolean>(false);
   const [scrollOn, setScrollOn] = useState<boolean>(false);
@@ -303,7 +303,10 @@ export default function NormalHeader({ userInfom }: any) {
 
             <ul className="user_menu">
               <li className="mypage">
-                <Link legacyBehavior href="#">
+                <Link
+                  legacyBehavior
+                  href={userData !== null ? "/mypage" : "/auth/auth"}
+                >
                   <a>
                     <img src="/images/top_mypage.png" alt="" />
                   </a>
@@ -311,7 +314,7 @@ export default function NormalHeader({ userInfom }: any) {
                 <ul className="sub_mypage">
                   <li
                     onClick={() => {
-                      if (userInfom !== undefined) {
+                      if (userData !== null) {
                         const auth = getAuth();
                         auth
                           .signOut()
@@ -326,14 +329,12 @@ export default function NormalHeader({ userInfom }: any) {
                   >
                     <Link
                       legacyBehavior
-                      href={
-                        userInfom !== undefined ? "/auth/logout" : "/auth/login"
-                      }
+                      href={userData !== null ? "/" : "/auth/auth"}
                     >
-                      <a>{userInfom !== undefined ? "logout" : "login"}</a>
+                      <a>{userData !== null ? "logout" : "login"}</a>
                     </Link>
                   </li>
-                  {userInfom !== undefined ? (
+                  {userData !== null ? (
                     <li>
                       <Link legacyBehavior href="#">
                         <a>mypage</a>
@@ -342,6 +343,11 @@ export default function NormalHeader({ userInfom }: any) {
                   ) : (
                     <></>
                   )}
+                  <li>
+                    <Link legacyBehavior href="#">
+                      <a>order</a>
+                    </Link>
+                  </li>
                 </ul>
               </li>
               <li>
@@ -523,6 +529,7 @@ export default function NormalHeader({ userInfom }: any) {
           color: #555;
           transition: opacity 0.5s linear 0s;
           opacity: 0.6;
+          text-transform: uppercase;
         }
 
         .sub_mypage > li > a:hover {
