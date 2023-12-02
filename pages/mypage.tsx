@@ -59,7 +59,7 @@ export default function Mypage() {
               />
               {userData.displayName || userData.email}님,
               <br />
-              스파오몰을 이용해 주셔서 감사합니다....
+              스파오몰을 이용해 주셔서 감사합니다
             </p>
             <div className="order_list">
               <h3>최근 주문내역</h3>
