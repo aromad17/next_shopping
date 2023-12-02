@@ -26,7 +26,7 @@ export default function Home() {
 
   return (
     <>
-      <Seo title="HOME"></Seo>
+      <Seo title="HOME" />
       <div className="wrap">
         {imageList.length > 0 ? (
           <>

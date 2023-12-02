@@ -1,9 +1,8 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
-
-export default function Header() {
+import { getAuth, signOut } from "firebase/auth";
+export default function Header({ userInfom }: any) {
   const [headerOn, setHeaderOn] = useState<boolean>(false);
-  const [headerItemPage, setHeaderItemPage] = useState<boolean>(false);
   const [scrollOn, setScrollOn] = useState<boolean>(false);
   const [menuList, setMenuList] = useState<HTMLElement[]>();
   const [detailMenu, setDetailMenu] = useState<HTMLElement[]>();
@@ -316,7 +315,10 @@ export default function Header() {
 
             <ul className="user_menu">
               <li className="mypage">
-                <Link legacyBehavior href="#">
+                <Link
+                  legacyBehavior
+                  href={userInfom !== undefined ? "/mypage" : "/auth/auth"}
+                >
                   <a>
                     <img
                       src={
@@ -329,16 +331,37 @@ export default function Header() {
                   </a>
                 </Link>
                 <ul className="sub_mypage">
-                  <li>
-                    <Link legacyBehavior href="#">
-                      <a>LOGIN</a>
+                  <li
+                    onClick={() => {
+                      if (userInfom !== undefined) {
+                        const auth = getAuth();
+                        auth
+                          .signOut()
+                          .then(() => {
+                            window.location.reload();
+                          })
+                          .catch((error) => {
+                            console.error("로그아웃 오류:", error);
+                          });
+                      }
+                    }}
+                  >
+                    <Link
+                      legacyBehavior
+                      href={userInfom !== undefined ? "/" : "/auth/auth"}
+                    >
+                      <a>{userInfom !== undefined ? "logout" : "login"}</a>
                     </Link>
                   </li>
-                  <li>
-                    <Link legacyBehavior href="#">
-                      <a>ORDER</a>
-                    </Link>
-                  </li>
+                  {userInfom !== undefined ? (
+                    <li>
+                      <Link legacyBehavior href="/mypage">
+                        <a>mypage</a>
+                      </Link>
+                    </li>
+                  ) : (
+                    <></>
+                  )}
                 </ul>
               </li>
               <li>
@@ -545,6 +568,7 @@ export default function Header() {
           color: #555;
           transition: opacity 0.5s linear 0s;
           opacity: 0.6;
+          text-transform: uppercase;
         }
 
         .sub_mypage > li > a:hover {

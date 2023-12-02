@@ -35,8 +35,6 @@ export default function Weekly({ data }: any) {
     setWeeklyList(Array.from(weeklyItems));
   }, []);
 
-  //useEffect끝
-
   const router = useRouter();
 
   const onClick = (

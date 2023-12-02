@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
-
-export default function NormalHeader() {
+import { getAuth, signOut } from "firebase/auth";
+export default function NormalHeader({ userInfom }: any) {
   const [headerOn, setHeaderOn] = useState<boolean>(false);
   const [headerItemPage, setHeaderItemPage] = useState<boolean>(false);
   const [scrollOn, setScrollOn] = useState<boolean>(false);
@@ -309,16 +309,39 @@ export default function NormalHeader() {
                   </a>
                 </Link>
                 <ul className="sub_mypage">
-                  <li>
-                    <Link legacyBehavior href="#">
-                      <a>LOGIN</a>
+                  <li
+                    onClick={() => {
+                      if (userInfom !== undefined) {
+                        const auth = getAuth();
+                        auth
+                          .signOut()
+                          .then(() => {
+                            window.location.reload();
+                          })
+                          .catch((error) => {
+                            console.error("로그아웃 오류:", error);
+                          });
+                      }
+                    }}
+                  >
+                    <Link
+                      legacyBehavior
+                      href={
+                        userInfom !== undefined ? "/auth/logout" : "/auth/login"
+                      }
+                    >
+                      <a>{userInfom !== undefined ? "logout" : "login"}</a>
                     </Link>
                   </li>
-                  <li>
-                    <Link legacyBehavior href="#">
-                      <a>ORDER</a>
-                    </Link>
-                  </li>
+                  {userInfom !== undefined ? (
+                    <li>
+                      <Link legacyBehavior href="#">
+                        <a>mypage</a>
+                      </Link>
+                    </li>
+                  ) : (
+                    <></>
+                  )}
                 </ul>
               </li>
               <li>
