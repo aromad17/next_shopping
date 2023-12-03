@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-export default function Business() {
+export default function Business({ winWid }: any) {
   return (
     <>
       <div className="business_wrap cboth">

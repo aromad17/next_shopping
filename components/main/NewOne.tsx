@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 
-export default function NewOne({ data }: any) {
+export default function NewOne({ data }: any, { winWid }: any) {
   const [newList, setNewList] = useState<Item[] | undefined>(undefined);
 
   useEffect(() => {

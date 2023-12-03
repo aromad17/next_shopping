@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 
-export default function Style({ data }: any) {
+export default function Style({ data }: any, { winWid }: any) {
   const [styleList, setStyleList] = useState<Item[] | undefined>(undefined);
 
   useEffect(() => {

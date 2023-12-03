@@ -8,8 +8,6 @@ export default function Header({ userData }: any) {
   const [menuList, setMenuList] = useState<HTMLElement[]>();
   const [detailMenu, setDetailMenu] = useState<HTMLElement[]>();
 
-  console.log(userData);
-
   const headerEnter = (): void => {
     let winScroll: number = window.scrollY;
     if (winScroll < 70) {

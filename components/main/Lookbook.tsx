@@ -7,7 +7,7 @@ import { LookBook } from "../../pages/api/images";
 
 import Link from "next/link";
 
-export default function Lookbook({ data }: any) {
+export default function Lookbook({ data }: any, { winWid }: any) {
   const [lookbookList, setLookbookList] = useState<LookBook[] | undefined>(
     undefined
   );

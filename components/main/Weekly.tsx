@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import Link from "next/link";
 
-export default function Weekly({ data }: any) {
+export default function Weekly({ data }: any, { winWid }: any) {
   function activationOn(i: number, value: any) {
     for (let el of value) {
       el.classList.remove("on");

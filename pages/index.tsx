@@ -24,23 +24,54 @@ export default function Home() {
     fetchData();
   }, []);
 
+  const [winWid, setWinWIdth] = useState<number | undefined>();
+  useEffect(() => {
+    let windowSize: number = window.innerWidth;
+    setWinWIdth(windowSize);
+    console.log(winWid);
+
+    const handleResize = () => {
+      windowSize = window.innerWidth;
+      setWinWIdth(windowSize);
+      console.log(winWid);
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
   return (
     <>
       <Seo title="HOME" />
-      <div className="wrap">
+      <div
+        className={winWid !== undefined && winWid > 1200 ? "wrap" : "wrap m"}
+      >
         {imageList.length > 0 ? (
           <>
-            <Slide />
-            <Weekly data={imageList[0]} />
-            <NewOne data={imageList[1]} />
-            <Business />
-            <Style data={imageList[2]} />
-            <Lookbook data={imageList[3]} />
+            <Slide winWid={winWid} />
+            <Weekly data={imageList[0]} winWid={winWid} />
+            <NewOne data={imageList[1]} winWid={winWid} />
+            <Business winWid={winWid} />
+            <Style data={imageList[2]} winWid={winWid} />
+            <Lookbook data={imageList[3]} winWid={winWid} />
           </>
         ) : (
           <Loading />
         )}
       </div>
+      <style jsx>{`
+        .wrap {
+          position: relative;
+          z-index: 1;
+        }
+
+        .wrap.m {
+          padding-top: 60px;
+        }
+      `}</style>
     </>
   );
 }

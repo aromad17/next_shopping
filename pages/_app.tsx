@@ -18,19 +18,7 @@ export default function App({ Component, pageProps }: AppProps) {
   };
 
   const app = initializeApp(firebaseConfig);
-  const [userData, setUserData]: any = useState();
 
-  const auth = getAuth();
-
-  useEffect(() => {
-    onAuthStateChanged(auth, (user) => {
-      if (user && user !== null) {
-        setUserData(user);
-      } else {
-        console.log("no-user");
-      }
-    });
-  }, []);
   return (
     <Layout>
       <Component {...pageProps} />
