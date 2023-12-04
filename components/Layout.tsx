@@ -1,4 +1,4 @@
-import { ReactNode, useEffect, useState } from "react";
+import { ReactNode, useEffect, useRef, useState } from "react";
 import Footer from "./Footer";
 import { useRouter } from "next/router";
 import MainHeader from "./mainHeader";

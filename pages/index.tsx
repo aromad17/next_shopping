@@ -52,7 +52,7 @@ export default function Home() {
         {imageList.length > 0 ? (
           <>
             <Slide winWid={winWid} />
-            <Weekly data={imageList[0]} winWid={winWid} />
+            <Weekly data={imageList[0]} />
             <NewOne data={imageList[1]} winWid={winWid} />
             <Business winWid={winWid} />
             <Style data={imageList[2]} winWid={winWid} />
@@ -69,7 +69,7 @@ export default function Home() {
         }
 
         .wrap.m {
-          padding-top: 60px;
+          padding-top: 0px;
         }
       `}</style>
     </>

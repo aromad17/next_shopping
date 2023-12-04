@@ -2,380 +2,39 @@ import { Item } from "../../pages/api/images";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import Link from "next/link";
+import { Swiper, SwiperSlide } from "swiper/react";
+import Weekly_m from "./Weekly_m";
+import Weekly_pc from "./Weekly_pc";
 
-export default function Weekly({ data }: any, { winWid }: any) {
-  function activationOn(i: number, value: any) {
-    for (let el of value) {
-      el.classList.remove("on");
-    }
-    value[i].classList.add("on");
-  }
-
-  const [womanList, setWomanList] = useState<Item[] | undefined>(undefined);
-  const [manList, setManList] = useState<Item[] | undefined>(undefined);
-  const [kidsList, setKidsList] = useState<Item[] | undefined>(undefined);
-  const [pajamaList, setPajamaList] = useState<Item[] | undefined>(undefined);
-  const [categoryList, setCategoryList] = useState<HTMLElement[]>();
-  const [weeklyList, setWeeklyList] = useState<HTMLElement[]>();
+export default function Weekly({ data }: any) {
+  const [winWid, setWinWIdth] = useState<number | undefined>();
 
   useEffect(() => {
-    setWomanList(data[0]);
-    setManList(data[1]);
-    setKidsList(data[2]);
-    setPajamaList(data[3]);
+    let windowSize: number = window.innerWidth;
+    setWinWIdth(windowSize);
+    console.log(winWid);
 
-    const categoryItems = document.querySelectorAll<HTMLLIElement>(
-      ".weekly_category>li"
-    );
-    setCategoryList(Array.from(categoryItems));
+    const handleResize = () => {
+      windowSize = window.innerWidth;
+      setWinWIdth(windowSize);
+      console.log(winWid);
+    };
 
-    const weeklyItems =
-      document.querySelectorAll<HTMLLIElement>(".weekly_list");
+    window.addEventListener("resize", handleResize);
 
-    setWeeklyList(Array.from(weeklyItems));
-  }, []);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, [winWid]);
 
-  const router = useRouter();
-
-  const onClick = (
-    id: number,
-    category: string,
-    title: string,
-    path: string,
-    price: number,
-    color: string[]
-  ) => {
-    router.push(
-      {
-        pathname: `/items/${id}/${title}`,
-        query: {
-          id,
-          category,
-          title,
-          color,
-          price,
-          path,
-        },
-      },
-      `/items/${id}/${title}`
-    );
-  };
-
-  if (weeklyList !== undefined) {
-    weeklyList[0].classList.add("on");
-    weeklyList[0].style.opacity = "1";
-  }
-
-  if (categoryList !== undefined) {
-    categoryList.forEach((item, idx) => {
-      if (weeklyList !== undefined) {
-        item.addEventListener("click", (e) => {
-          e.preventDefault();
-          activationOn(idx, categoryList);
-          activationOn(idx, weeklyList);
-          weeklyList[idx].style.opacity = "0";
-
-          setTimeout(() => {
-            weeklyList[idx].style.opacity = "1";
-          }, 100);
-        });
-      }
-    });
-  }
   return (
     <>
-      <div className="weekly_wrap cboth">
-        <div className="inner">
-          <h2>위클리 베스트</h2>
-          <ul className="weekly_category">
-            <li className="on">
-              <Link legacyBehavior href="#">
-                <a>우먼</a>
-              </Link>
-            </li>
-            <li>
-              <Link legacyBehavior href="#">
-                <a>맨</a>
-              </Link>
-            </li>
-            <li>
-              <Link legacyBehavior href="#">
-                <a>키즈</a>
-              </Link>
-            </li>
-            <li>
-              <Link legacyBehavior href="#">
-                <a>파자마</a>
-              </Link>
-            </li>
-          </ul>
-          <div className="weekly_items_wrap">
-            <div className="weekly_items">
-              <ul className="weekly_list weekly_woman on">
-                {womanList &&
-                  womanList.map((item, index) => (
-                    <li
-                      key={index}
-                      onClick={(e): void => {
-                        e.preventDefault();
-                        onClick(
-                          item.id,
-                          item.category,
-                          item.title,
-                          item.path,
-                          item.price,
-                          item.color
-                        );
-                      }}
-                    >
-                      <Link
-                        legacyBehavior
-                        href={{
-                          pathname: `/items/${item.id}/${item.title}`,
-                          query: {
-                            id: item.id,
-                            category: item.category,
-                            title: item.title,
-                            color: item.color,
-                            price: item.price,
-                            path: item.path,
-                          },
-                        }}
-                        as={`/items/${item.id}/${item.title}`}
-                      >
-                        <a>
-                          <ul>
-                            <li className="weekly_image">
-                              <span className={item.id > 4 ? "gray" : ""}>
-                                {item.id}
-                              </span>
-                              <img src={item.path} />
-                            </li>
-                            <li className="weekly_name">{item.title}</li>
-                            <li className="weekly_price">
-                              {item.price.toLocaleString()}
-                            </li>
-                            <li className="weekly_color">
-                              {item.color.map((color, index) => (
-                                <span
-                                  key={index}
-                                  style={{
-                                    backgroundColor: color,
-                                    display: "inline-block",
-                                    width: "10px",
-                                    height: "10px",
-                                    marginRight: "5px",
-                                  }}
-                                ></span>
-                              ))}
-                            </li>
+      {winWid !== undefined && winWid > 1200 ? (
+        <Weekly_pc data={data} />
+      ) : (
+        <Weekly_m data={data} />
+      )}
 
-                            <li className={item.isWoman ? "on" : ""}>여성용</li>
-                          </ul>
-                        </a>
-                      </Link>
-                    </li>
-                  ))}
-              </ul>
-              <ul className="weekly_list weekly_man">
-                {manList &&
-                  manList.map((item, index) => (
-                    <li
-                      key={index}
-                      onClick={(e): void => {
-                        e.preventDefault();
-                        onClick(
-                          item.id,
-                          item.category,
-                          item.title,
-                          item.path,
-                          item.price,
-                          item.color
-                        );
-                      }}
-                    >
-                      <Link
-                        legacyBehavior
-                        href={{
-                          pathname: `/items/${item.id}/${item.title}`,
-                          query: {
-                            id: item.id,
-                            category: item.category,
-                            title: item.title,
-                            color: item.color,
-                            price: item.price,
-                            path: item.path,
-                          },
-                        }}
-                        as={`/items/${item.id}/${item.title}`}
-                      >
-                        <a>
-                          <ul>
-                            <li className="weekly_image">
-                              <span className={item.id > 4 ? "gray" : ""}>
-                                {item.id}
-                              </span>
-                              <img src={item.path} />
-                            </li>
-                            <li className="weekly_name">{item.title}</li>
-                            <li className="weekly_price">
-                              {item.price.toLocaleString()}
-                            </li>
-                            <li className="weekly_color">
-                              {item.color.map((color, index) => (
-                                <span
-                                  key={index}
-                                  style={{
-                                    backgroundColor: color,
-                                    display: "inline-block",
-                                    width: "10px",
-                                    height: "10px",
-                                    marginRight: "5px",
-                                  }}
-                                ></span>
-                              ))}
-                            </li>
-                            <li className={item.isWoman ? "on" : ""}>여성용</li>
-                          </ul>
-                        </a>
-                      </Link>
-                    </li>
-                  ))}
-              </ul>
-              <ul className="weekly_list weekly_kids">
-                {kidsList &&
-                  kidsList.map((item, index) => (
-                    <li
-                      key={index}
-                      onClick={(e): void => {
-                        e.preventDefault();
-                        onClick(
-                          item.id,
-                          item.category,
-                          item.title,
-                          item.path,
-                          item.price,
-                          item.color
-                        );
-                      }}
-                    >
-                      <Link
-                        legacyBehavior
-                        href={{
-                          pathname: `/items/${item.id}/${item.title}`,
-                          query: {
-                            id: item.id,
-                            category: item.category,
-                            title: item.title,
-                            color: item.color,
-                            price: item.price,
-                            path: item.path,
-                          },
-                        }}
-                        as={`/items/${item.id}/${item.title}`}
-                      >
-                        <a>
-                          <ul>
-                            <li className="weekly_image">
-                              <span className={item.id > 4 ? "gray" : ""}>
-                                {item.id}
-                              </span>
-                              <img src={item.path} />
-                            </li>
-                            <li className="weekly_name">{item.title}</li>
-                            <li className="weekly_price">
-                              {item.price.toLocaleString()}
-                            </li>
-                            <li className="weekly_color">
-                              {item.color.map((color, index) => (
-                                <span
-                                  key={index}
-                                  style={{
-                                    backgroundColor: color,
-                                    display: "inline-block",
-                                    width: "10px",
-                                    height: "10px",
-                                    marginRight: "5px",
-                                  }}
-                                ></span>
-                              ))}
-                            </li>
-                            <li className={item.isWoman ? "on" : ""}>여성용</li>
-                          </ul>
-                        </a>
-                      </Link>
-                    </li>
-                  ))}
-              </ul>
-              <ul className="weekly_list weekly_pajama">
-                {pajamaList &&
-                  pajamaList.map((item, index) => (
-                    <li
-                      key={index}
-                      onClick={(e): void => {
-                        e.preventDefault();
-                        onClick(
-                          item.id,
-                          item.category,
-                          item.title,
-                          item.path,
-                          item.price,
-                          item.color
-                        );
-                      }}
-                    >
-                      <Link
-                        legacyBehavior
-                        href={{
-                          pathname: `/items/${item.id}/${item.title}`,
-                          query: {
-                            id: item.id,
-                            category: item.category,
-                            title: item.title,
-                            color: item.color,
-                            price: item.price,
-                            path: item.path,
-                          },
-                        }}
-                        as={`/items/${item.id}/${item.title}`}
-                      >
-                        <a>
-                          <ul>
-                            <li className="weekly_image">
-                              <span className={item.id > 4 ? "gray" : ""}>
-                                {item.id}
-                              </span>
-                              <img src={item.path} />
-                            </li>
-                            <li className="weekly_name">{item.title}</li>
-                            <li className="weekly_price">
-                              {item.price.toLocaleString()}
-                            </li>
-                            <li className="weekly_color">
-                              {item.color.map((color, index) => (
-                                <span
-                                  key={index}
-                                  style={{
-                                    backgroundColor: color,
-                                    display: "inline-block",
-                                    width: "10px",
-                                    height: "10px",
-                                    marginRight: "5px",
-                                  }}
-                                ></span>
-                              ))}
-                            </li>
-                            <li className={item.isWoman ? "on" : ""}>여성용</li>
-                          </ul>
-                        </a>
-                      </Link>
-                    </li>
-                  ))}
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
       <style jsx>{`
         /* weekly */
 
@@ -595,7 +254,7 @@ export default function Weekly({ data }: any, { winWid }: any) {
           position: relative;
           width: 100%;
           min-height: 415px;
-          max-height: 575.05px;
+          max-height: 415px;
           object-fit: cover;
           transform: scale(1);
           transition: transform 0.2s linear 0s;
@@ -659,6 +318,27 @@ export default function Weekly({ data }: any, { winWid }: any) {
           > ul
           > li:last-child.on {
           display: inline-block;
+        }
+        .weekly_wrap.m .weekly_items_wrap {
+          position: relative;
+        }
+
+        .weekly_item_m {
+          width: 50%;
+          margin-bottom: 20px;
+        }
+
+        .weekly_item_m > .weekly_image {
+          width: 92%;
+          margin: 0 auto;
+        }
+
+        .weekly_item_m > .weekly_image > img {
+          width: 100%;
+        }
+        .weekly_item_m > ul {
+          width: 92%;
+          margin: 0 auto;
         }
       `}</style>
     </>

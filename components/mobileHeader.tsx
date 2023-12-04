@@ -1,11 +1,24 @@
 import Link from "next/link";
+import { useState } from "react";
+import HamMenu from "./HamMenu";
 
 export default function MobileHeader({ userData }: any) {
+  const [hamClick, setHamClick] = useState<boolean>(false);
+
+  const onHamClick = () => {
+    setHamClick(true);
+  };
+
   return (
     <>
+      <HamMenu
+        hamClick={hamClick}
+        setHamClick={setHamClick}
+        userData={userData}
+      />
       <header>
         <div className="header_wrap">
-          <div className="ham">
+          <div className="ham" onClick={onHamClick}>
             <span></span>
             <span></span>
             <span></span>
@@ -46,7 +59,7 @@ export default function MobileHeader({ userData }: any) {
           height: 60px;
           background-color: white;
           border-bottom: 1px solid#e5e5e5;
-          z-index: 999;
+          z-index: 998;
         }
 
         .header_wrap {
