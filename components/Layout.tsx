@@ -22,21 +22,17 @@ export default function Layout({ children }: LayoutProps) {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
         setUserData(user);
-        console.log(user);
       } else {
         setUserData(null);
-        console.log("no - user");
       }
     });
 
     let windowSize: number = window.innerWidth;
     setWinWIdth(windowSize);
-    console.log(winWid);
 
     const handleResize = () => {
       windowSize = window.innerWidth;
       setWinWIdth(windowSize);
-      console.log(winWid);
     };
 
     window.addEventListener("resize", handleResize);
@@ -46,8 +42,6 @@ export default function Layout({ children }: LayoutProps) {
       unsubscribe();
     };
   }, []);
-
-  console.log(winWid);
 
   if (isMobile === false) {
     if (winWid !== undefined && winWid > 1200) {

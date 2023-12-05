@@ -2,7 +2,6 @@ import { Item } from "../../pages/api/images";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import Link from "next/link";
-import { Swiper, SwiperSlide } from "swiper/react";
 
 export default function Weekly_pc({ data }: any) {
   function activationOn(i: number, value: any) {
@@ -17,9 +16,6 @@ export default function Weekly_pc({ data }: any) {
   const [pajamaList, setPajamaList] = useState<Item[] | undefined>(undefined);
   const [categoryList, setCategoryList] = useState<HTMLElement[]>();
   const [weeklyList, setWeeklyList] = useState<HTMLElement[]>();
-  const [widSize, setWidSize] = useState<number>();
-
-  console.log(weeklyList);
 
   useEffect(() => {
     setWomanList(data[0]);
@@ -36,7 +32,6 @@ export default function Weekly_pc({ data }: any) {
       document.querySelectorAll<HTMLLIElement>("ul.weekly_list");
     setWeeklyList(Array.from(weeklyItems));
     if (weeklyList !== undefined) {
-      console.log(weeklyList[3]);
     }
   }, [data]);
 

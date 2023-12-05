@@ -208,7 +208,9 @@ body {
 }
 
 /* 신상품부분 */
-
+.new_wrap .swiper-pagination {
+  display: none !important;
+}
 /* 스타일 부분 */
 
 .style_wrap .swiper-button-prev {
@@ -288,5 +290,13 @@ body {
   .weekly_wrap.m .swiper-pagination-bullet {
     width: 10px !important;
     height: 10px !important;
+  }
+
+  .new_wrap.m .swiper {
+    padding-bottom: 30px !important;
+  }
+
+  .new_wrap.m .swiper-pagination {
+    display: block !important;
   }
 }

@@ -18,8 +18,6 @@ export default function Weekly_m({ data }: any) {
   const [categoryList, setCategoryList] = useState<HTMLElement[]>();
   const [weeklyList, setWeeklyList] = useState<HTMLElement[]>();
 
-  console.log(weeklyList);
-
   useEffect(() => {
     setWomanList(data[0]);
     setManList(data[1]);
@@ -35,7 +33,6 @@ export default function Weekly_m({ data }: any) {
       document.querySelectorAll<HTMLLIElement>(".weekly_list");
     setWeeklyList(Array.from(weeklyItems));
     if (weeklyList !== undefined) {
-      console.log(weeklyList[3]);
     }
   }, [data]);
 
@@ -44,12 +41,10 @@ export default function Weekly_m({ data }: any) {
   useEffect(() => {
     let windowSize: number = window.innerWidth;
     setWinWIdth(windowSize);
-    console.log(winWid);
 
     const handleResize = () => {
       windowSize = window.innerWidth;
       setWinWIdth(windowSize);
-      console.log(winWid);
     };
 
     window.addEventListener("resize", handleResize);
@@ -141,7 +136,6 @@ export default function Weekly_m({ data }: any) {
                 <Swiper
                   modules={[Pagination, A11y]}
                   pagination={{ clickable: true }}
-                  className="weekly_woman on"
                 >
                   <SwiperSlide>
                     {womanList &&
@@ -173,7 +167,7 @@ export default function Weekly_m({ data }: any) {
                         </div>
                       ))}
                   </SwiperSlide>
-                  <SwiperSlide className="weekly_item_m">
+                  <SwiperSlide>
                     {womanList &&
                       womanList.slice(4, 8).map((item, index) => (
                         <div key={index} className="weekly_item_m">

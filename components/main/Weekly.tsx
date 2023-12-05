@@ -12,12 +12,10 @@ export default function Weekly({ data }: any) {
   useEffect(() => {
     let windowSize: number = window.innerWidth;
     setWinWIdth(windowSize);
-    console.log(winWid);
 
     const handleResize = () => {
       windowSize = window.innerWidth;
       setWinWIdth(windowSize);
-      console.log(winWid);
     };
 
     window.addEventListener("resize", handleResize);

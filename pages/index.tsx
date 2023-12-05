@@ -28,12 +28,10 @@ export default function Home() {
   useEffect(() => {
     let windowSize: number = window.innerWidth;
     setWinWIdth(windowSize);
-    console.log(winWid);
 
     const handleResize = () => {
       windowSize = window.innerWidth;
       setWinWIdth(windowSize);
-      console.log(winWid);
     };
 
     window.addEventListener("resize", handleResize);
@@ -54,7 +52,7 @@ export default function Home() {
             <Slide winWid={winWid} />
             <Weekly data={imageList[0]} />
             <NewOne data={imageList[1]} winWid={winWid} />
-            <Business winWid={winWid} />
+            <Business />
             <Style data={imageList[2]} winWid={winWid} />
             <Lookbook data={imageList[3]} winWid={winWid} />
           </>

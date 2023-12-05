@@ -1,17 +1,32 @@
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, A11y } from "swiper/modules";
-import { Item } from "../../pages/api/images";
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
-
-export default function NewOne({ data }: any, { winWid }: any) {
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation, Pagination, A11y } from "swiper/modules";
+import { Item } from "../../pages/api/images";
+export default function NewOne({ data }: any) {
+  const [winWid, setWinWIdth] = useState<number | undefined>();
   const [newList, setNewList] = useState<Item[] | undefined>(undefined);
+  const router = useRouter();
 
   useEffect(() => {
     setNewList(data[0]);
   }, []);
-  const router = useRouter();
+  useEffect(() => {
+    let windowSize: number = window.innerWidth;
+    setWinWIdth(windowSize);
+
+    const handleResize = () => {
+      windowSize = window.innerWidth;
+      setWinWIdth(windowSize);
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, [winWid]);
 
   const onClick = (
     id: number,
@@ -38,95 +53,189 @@ export default function NewOne({ data }: any, { winWid }: any) {
   };
   return (
     <>
-      <div className="new_wrap cboth">
-        <h2>신상품</h2>
-        <div className="new_slide_wrap">
-          {newList ? (
-            <Swiper
-              modules={[Navigation, A11y]}
-              spaceBetween={20}
-              slidesPerView={4}
-              navigation
-              style={{ width: "90%", minWidth: "1200px", position: "unset" }}
-              loop={true}
-            >
-              {newList.map((item, index) => (
-                <SwiperSlide
-                  key={index}
-                  className="new_item"
-                  onClick={(e): void => {
-                    e.preventDefault();
-                    onClick(
-                      item.id,
-                      item.category,
-                      item.title,
-                      item.path,
-                      item.price,
-                      item.color
-                    );
-                  }}
-                >
-                  <Link
-                    legacyBehavior
-                    href={{
-                      pathname: `/items/${item.id}/${item.title}`,
-                      query: {
-                        id: item.id,
-                        category: item.category,
-                        title: item.title,
-                        color: item.color,
-                        price: item.price,
-                        path: item.path,
-                      },
+      {winWid !== undefined && winWid > 1200 ? (
+        <div className="new_wrap cboth">
+          <h2>신상품</h2>
+          <div className="new_slide_wrap">
+            {newList ? (
+              <Swiper
+                modules={[Navigation, A11y, Pagination]}
+                spaceBetween={20}
+                slidesPerView={4}
+                pagination={{
+                  clickable: true,
+                }}
+                navigation
+                style={{ width: "90%", minWidth: "1200px", position: "unset" }}
+                loop={true}
+              >
+                {newList.map((item, index) => (
+                  <SwiperSlide
+                    key={index}
+                    onClick={(e): void => {
+                      e.preventDefault();
+                      onClick(
+                        item.id,
+                        item.category,
+                        item.title,
+                        item.path,
+                        item.price,
+                        item.color
+                      );
                     }}
-                    as={`/items/${item.id}/${item.title}`}
                   >
-                    <a>
-                      <div className="item_img">
-                        <img src={item.path} alt={item.title} />
-                      </div>
-                      <div className="item_title">{item.title}</div>
-                      <div className="item_price">
-                        {item.price.toLocaleString()}
-                      </div>
-                      <div className="item_color">
-                        {item.color.map((color, idx) => (
-                          <span
-                            key={idx}
-                            style={{
-                              backgroundColor: color,
-                              display: "inline-block",
-                              width: "10px",
-                              height: "10px",
-                              marginRight: "5px",
-                            }}
-                          ></span>
-                        ))}
-                      </div>
-                      <div className={`isWoman `}>
-                        {item.isWoman
-                          ? "여성용"
-                          : item.isMan
-                          ? "남성용"
-                          : item.isMan && item.isWoman
-                          ? ""
-                          : "남녀공용"}
-                      </div>
-                    </a>
-                  </Link>
-                </SwiperSlide>
-              ))}
-            </Swiper>
-          ) : (
-            <div>loading...</div>
-          )}
+                    <Link
+                      legacyBehavior
+                      href={{
+                        pathname: `/items/${item.id}/${item.title}`,
+                        query: {
+                          id: item.id,
+                          category: item.category,
+                          title: item.title,
+                          color: item.color,
+                          price: item.price,
+                          path: item.path,
+                        },
+                      }}
+                      as={`/items/${item.id}/${item.title}`}
+                    >
+                      <a>
+                        <div className="item_img">
+                          <img src={item.path} alt={item.title} />
+                        </div>
+                        <div className="item_title">{item.title}</div>
+                        <div className="item_price">
+                          {item.price.toLocaleString()}
+                        </div>
+                        <div className="item_color">
+                          {item.color.map((color, idx) => (
+                            <span
+                              key={idx}
+                              style={{
+                                backgroundColor: color,
+                                display: "inline-block",
+                                width: "10px",
+                                height: "10px",
+                                marginRight: "5px",
+                              }}
+                            ></span>
+                          ))}
+                        </div>
+                        <div className={`isWoman `}>
+                          {item.isWoman
+                            ? "여성용"
+                            : item.isMan
+                            ? "남성용"
+                            : item.isMan && item.isWoman
+                            ? ""
+                            : "남녀공용"}
+                        </div>
+                      </a>
+                    </Link>
+                  </SwiperSlide>
+                ))}
+              </Swiper>
+            ) : (
+              <div>loading...</div>
+            )}
+          </div>
         </div>
-      </div>
+      ) : (
+        <div className="new_wrap m cboth">
+          <h2>신상품</h2>
+          <div className="new_slide_wrap">
+            {newList ? (
+              <Swiper
+                modules={[Pagination, A11y]}
+                spaceBetween={20}
+                slidesPerView={1}
+                pagination={{ clickable: true }}
+                style={{ width: "100%" }}
+                loop={true}
+              >
+                {newList.map((item, index) => (
+                  <SwiperSlide
+                    key={index}
+                    onClick={(e): void => {
+                      e.preventDefault();
+                      onClick(
+                        item.id,
+                        item.category,
+                        item.title,
+                        item.path,
+                        item.price,
+                        item.color
+                      );
+                    }}
+                  >
+                    <Link
+                      legacyBehavior
+                      href={{
+                        pathname: `/items/${item.id}/${item.title}`,
+                        query: {
+                          id: item.id,
+                          category: item.category,
+                          title: item.title,
+                          color: item.color,
+                          price: item.price,
+                          path: item.path,
+                        },
+                      }}
+                      as={`/items/${item.id}/${item.title}`}
+                    >
+                      <a className="item_wrap">
+                        <div className="item_img">
+                          <img src={item.path} alt={item.title} />
+                        </div>
+                        <div className="item_title">{item.title}</div>
+                        <div className="item_price">
+                          {item.price.toLocaleString()}
+                        </div>
+                        <div className="item_color">
+                          {item.color.map((color, idx) => (
+                            <span
+                              key={idx}
+                              style={{
+                                backgroundColor: color,
+                                display: "inline-block",
+                                width: "10px",
+                                height: "10px",
+                                marginRight: "5px",
+                              }}
+                            ></span>
+                          ))}
+                        </div>
+                        <div className={`isWoman `}>
+                          {item.isWoman
+                            ? "여성용"
+                            : item.isMan
+                            ? "남성용"
+                            : item.isMan && item.isWoman
+                            ? ""
+                            : "남녀공용"}
+                        </div>
+                      </a>
+                    </Link>
+                  </SwiperSlide>
+                ))}
+              </Swiper>
+            ) : (
+              <div>loading...</div>
+            )}
+          </div>
+        </div>
+      )}
       <style jsx>{`
         /* new */
         .new_slide_wrap {
           position: relative;
           width: 100%;
+        }
+
+        .item_wrap {
+          display: block;
+          width: 90%;
+          margin: 0 auto;
         }
         .item_img {
           position: relative;
