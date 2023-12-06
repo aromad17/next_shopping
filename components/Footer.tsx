@@ -44,8 +44,6 @@ export default function Footer() {
                 <p className="time">상담시간 : 오전 0시~오후 12시</p>
                 <p className="email">
                   email : aromad1117@naver.com (구직 문의)
-                  <br />
-                  email : aromad1117@naver.com (취업 문의)
                 </p>
               </div>
               <div className="company_info">
@@ -309,8 +307,6 @@ export default function Footer() {
                 <p className="phone">010-6685-0145</p>
                 <p className="time">상담시간 : 오전 0시~오후 12시</p>
                 <p className="email">
-                  email : aromad1117@naver.com (구직 문의)
-                  <br />
                   email : aromad1117@naver.com (취업 문의)
                 </p>
               </div>
