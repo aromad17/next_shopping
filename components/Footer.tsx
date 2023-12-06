@@ -790,12 +790,32 @@ export default function Footer() {
         }
 
         .footer_wrap.m .footer_right {
-          padding-bottom: 30px;
+          position: relative;
+          padding-bottom: 80px;
+          display: flex;
+          flex-direction: row;
+        }
+        .footer_wrap.m .footer_right div,
+        .footer_wrap.m .footer_right ul {
+          float: none;
+        }
+        .footer_wrap.m .footer_right div {
+          position: absolute;
+          bottom: 10px;
+          right: 0;
         }
 
+        .footer_wrap.m .footer_right ul > li > a {
+          font-size: 12px;
+        }
+        .footer_wrap.m .footer_bottom > div {
+          display: block;
+          width: 100%;
+        }
         .footer_wrap.m .footer_bottom > ul {
           display: block;
           float: left;
+          width: 100%;
           margin-top: 20px;
         }
         .footer_wrap.m .footer_bottom > ul > li {
