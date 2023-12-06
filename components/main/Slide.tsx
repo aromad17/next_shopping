@@ -73,7 +73,7 @@ export default function Slide({ winWid }: any) {
           </Swiper>
         </div>
       ) : (
-        <div className="slide_wrap_m cboth">
+        <div className="slide_wrap_m cboth" style={{ paddingTop: "60px" }}>
           <Swiper
             style={{ display: "flex" }}
             modules={[Autoplay, EffectFade, A11y]}

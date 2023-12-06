@@ -251,7 +251,9 @@ body {
 .swiper-slide-active > .slide_img_wrap > .slide_sub {
   opacity: 1 !important;
 }
-
+.lookbook_wrap .swiper-pagination {
+  display: none !important;
+}
 @media screen and (max-width: 1200px) {
   .inner {
     position: relative;
@@ -287,7 +289,10 @@ body {
     position: absolute !important;
     bottom: 0px !important;
   }
-  .weekly_wrap.m .swiper-pagination-bullet {
+  .weekly_wrap.m .swiper-pagination-bullet,
+  .new_wrap.m .swiper-pagination-bullet,
+  .style_wrap.m .swiper-pagination-bullet,
+  .lookbook_wrap.m .swiper-pagination-bullet {
     width: 10px !important;
     height: 10px !important;
   }
@@ -298,5 +303,10 @@ body {
 
   .new_wrap.m .swiper-pagination {
     display: block !important;
+  }
+
+  .lookbook_wrap.m .swiper-pagination {
+    display: block !important;
+    bottom: 0px;
   }
 }
